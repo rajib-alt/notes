@@ -5,6 +5,7 @@ tags:
   - type/project
   - context/default
   - theme/default
+  - priority/high
   - status/planning
 date:
   "{ date }":
@@ -15,15 +16,15 @@ last_updated:
 # Project: {{title}}
 
 ## Overview
-- **Main Objective**: ERP ADS
-- **Current Status**: Working
+- **Main Objective**:
+- **Current Status**:
 
 ## Timeline
-- **Start Date**: 5/5/2026
-- **Due Date**: 7/5/2026
+- **Start Date**: 
+- **Due Date**: 
 - **Key Milestones**:
-  1. Ads knowledge
-  2. 
+  1. Milestone 1
+  2. Milestone 2
 
 ## Dependencies
 ### Prerequisites
