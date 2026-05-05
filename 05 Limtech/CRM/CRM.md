@@ -16,7 +16,8 @@
   
 - **Visual:** Limtech CRM dashboard ধীরে ধীরে আসবে।
   
-- **Feature walk:** Lead, Followup, Report, Pipeline — প্রতিটা তিন থেকে চার সেকেন্ড। বেশি দেখালে মানুষ হারিয়ে যাবে।
+- **Feature walk:** Lead, Follow-up, Report, Pipeline — প্রতিটা তিন থেকে চার সেকেন্ড। 
   
 - **Outcome:** feature list শেষ করে result বলবে — _"একই টিম, দ্বিগুণ ফলাফল।"_
-- **CTA:** একটাই message, একটাই কাজ — demo নিন।
+  
+- **CTA:** demo নিন
