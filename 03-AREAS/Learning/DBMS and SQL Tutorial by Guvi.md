@@ -23,7 +23,7 @@ created: 2026-06-07
 ## 📖 Notes
 
 ### Module 1:
-- Database Concept
+- [[Database Concept]]
 
 ### Module 2:
 - Basic SQL
@@ -55,5 +55,4 @@ A:
 *→ [[03-AREAS/Learning/Certifications-Tracker]]*
 
 
-# [[Database Management System]]
 
