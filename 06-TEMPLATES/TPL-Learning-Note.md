@@ -1,0 +1,49 @@
+---
+title: 
+type: learning-note
+course: 
+provider: 
+status: studying
+cert-date: 
+tags: [learning, status/studying]
+created: <% tp.date.now("YYYY-MM-DD") %>
+---
+
+# 🎓 Learning:
+
+**Course:** 
+**Provider:** 
+**Goal:** 
+
+---
+
+## 📖 Notes
+
+### Module 1:
+-
+
+### Module 2:
+-
+
+---
+
+## 💡 Key concepts
+>
+
+---
+
+## #flashcard candidates
+
+Q:
+A:
+#flashcard
+
+---
+
+## ✅ Progress
+- [ ] Module 1
+- [ ] Module 2
+- [ ] Practice test
+- [ ] Exam
+
+*→ [[03-AREAS/Learning/Certifications-Tracker]]*
