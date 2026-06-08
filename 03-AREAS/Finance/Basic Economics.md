@@ -1,8 +1,10 @@
-# 📚 # 📚 Basic Economics — Thomas Sowell
+ # 📚 Basic Economics — Thomas Sowell
 
 **Source:** _Basic Economics_ by Thomas Sowell (700 pages) | Stanford Economist **Video:** Once You Learn Economics, You Can't Be MANIPULATED Anymore 
 
-**Tags:** #economics #mindset #money #systems-thinking #book-summary **Status:** #evergreen 
+**Tags:** #economics #mindset #money #systems-thinking #book-summary 
+
+**Status:** #evergreen 
 
 **Links:** [[MOC-Finance]] | [[MOC-Books]]
 
