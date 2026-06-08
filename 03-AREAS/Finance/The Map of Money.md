@@ -175,3 +175,4 @@ Every major central bank in the world targets 2% inflation per year and calls it
 - David Graeber, _Debt: The First 5,000 Years_
 - Bank of England founding charter, 1694
 - Nixon's televised address, August 15, 1971
+- [[Basic Economics]]
