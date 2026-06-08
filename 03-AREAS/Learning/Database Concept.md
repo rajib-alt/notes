@@ -1,120 +1,259 @@
-# 🗄️ Database & DBMS — Complete Notes
+# 🗄️ DBMS — Complete Beginner to Intermediate Notes
 
-> [!tip] How to Use This Note Read from top to bottom for the first time. Each section builds on the last. Use the headings to jump around later when you need to revise a topic. Every concept has a real-life example so you never feel lost.
-
----
-
-1. [[#🔷 What is Data|🔷 What is Data]]
-2. [[#🔷 What is a Database|🔷 What is a Database]]
-3. [[#🔷 What is a DBMS|🔷 What is a DBMS]]
-4. [[#🔷 Components of a DBMS|🔷 Components of a DBMS]]
-5. [[#🔷 DBMS Architecture|🔷 DBMS Architecture]]
-6. [[#🔷 Types of Database Models|🔷 Types of Database Models]]
-7. [[#🔷 ER Model — Designing a Database|🔷 ER Model — Designing a Database]]
-8. [[#🔷 Enhanced ER Model|🔷 Enhanced ER Model]]
-9. [[#🔷 Codd's 12 Rules|🔷 Codd's 12 Rules]]
-10. [[#🔷 Basic Relational DBMS Concepts|🔷 Basic Relational DBMS Concepts]]
-11. [[#🔷 Database Keys (Deep Dive)|🔷 Database Keys (Deep Dive)]]
-12. [[#🔷 Normalization — Cleaning Up Data|🔷 Normalization — Cleaning Up Data]]
-13. [[#🔷 Normal Forms — Step by Step|🔷 Normal Forms — Step by Step]]
-14. [[#🔷 Relational Algebra|🔷 Relational Algebra]]
-15. [[#🔷 Relational Calculus|🔷 Relational Calculus]]
-16. [[#🔷 ER Model → Relational Model (Converting Design to Tables)|🔷 ER Model → Relational Model (Converting Design to Tables)]]
-17. [[#🗂️ Quick Reference Cheat Sheet|🗂️ Quick Reference Cheat Sheet]]
-18. [[#🏷️ Tags|🏷️ Tags]]
-
+> [!tip] 📖 How to Read This Note
+> 
+> - **First time?** Read from top to bottom. Each section builds on the one before it.
+> - **Revising?** Use the Table of Contents to jump to any section.
+> - **Confused?** Every concept has a real-life analogy. Find the analogy and the technical part becomes easy.
+> - **Rule:** Never skip the "Simple Meaning" boxes. They are the heart of each concept.
 
 ---
 
-## 🔷 What is Data
+## 📌 Table of Contents
 
-> [!quote] Simple Definition **Data** = Raw, unprocessed facts.
+### 🟦 Part 1 — Foundations
 
-Think of it like this:
+- [[#What is Data, Information and Knowledge]]
+- [[#What is a Database]]
+- [[#What is a DBMS]]
+- [[#File System vs DBMS]]
+- [[#Components of a DBMS]]
+- [[#Types of DBMS Users]]
+- [[#DBMS Architecture]]
+- [[#Physical vs Logical Data Independence]]
 
-| Raw Data (Meaningless alone) | Processed Information (Meaningful) |
-| ---------------------------- | ---------------------------------- |
-| `01720123456`                | Nurul's phone number               |
-| `12-05-2002`                 | Karim's date of birth              |
-| `5000`                       | Monthly salary in BDT              |
+### 🟩 Part 2 — Database Design
 
-**Real-life analogy:** Imagine a grocery receipt full of numbers. Those numbers alone are "data." When you understand that `120 TK = Rice, 1kg`, it becomes **information**.
+- [[#Database Design Process]]
+- [[#Types of Database Models]]
+- [[#ER Model]]
+- [[#ER Diagram Symbols]]
+- [[#Enhanced ER Model]]
+- [[#ER Model to Relational Model]]
 
-Data becomes **information** only when it is organized and given context.
+### 🟨 Part 3 — Relational Model
+
+- [[#Basic Relational DBMS Concepts]]
+- [[#Database Keys]]
+- [[#Codd's 12 Rules]]
+- [[#Functional Dependency]]
+- [[#Normalization]]
+- [[#Normal Forms]]
+
+### 🟧 Part 4 — SQL
+
+- [[#What is SQL]]
+- [[#SQL Data Types]]
+- [[#DDL — Data Definition Language]]
+- [[#DML — Data Manipulation Language]]
+- [[#DQL — SELECT Queries]]
+- [[#SQL Clauses]]
+- [[#SQL Joins]]
+- [[#SQL Aggregate Functions]]
+- [[#SQL Subqueries]]
+- [[#SQL Views]]
+- [[#SQL Indexes]]
+- [[#SQL Stored Procedures and Functions]]
+- [[#SQL Triggers]]
+- [[#DCL — Data Control Language]]
+- [[#TCL — Transaction Control Language]]
+
+### 🟥 Part 5 — Advanced Concepts
+
+- [[#Transactions in DBMS]]
+- [[#ACID Properties]]
+- [[#Concurrency Control]]
+- [[#Deadlock in DBMS]]
+- [[#Database Recovery]]
+- [[#Indexing Deep Dive]]
+- [[#Hashing in DBMS]]
+- [[#Query Processing and Optimization]]
+- [[#Relational Algebra]]
+- [[#Relational Calculus]]
+
+### 🟪 Part 6 — Special Topics
+
+- [[#NoSQL vs SQL]]
+- [[#Database Security]]
+- [[#Backup and Recovery]]
+- [[#Data Warehouse vs Database]]
+- [[#Big Data Basics]]
+
+### 📋 Quick Reference
+
+- [[#Quick Reference Cheat Sheet]]
+- [[#Common Mistakes Beginners Make]]
+- [[#How Everything Connects]]
+
+---
+
+# 🟦 PART 1 — FOUNDATIONS
+
+---
+
+## 🔷 What is Data, Information and Knowledge
+
+These three words sound similar but mean very different things.
+
+### The Pyramid of Understanding
+
+```
+        WISDOM
+       (knowing WHEN to use knowledge)
+      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     KNOWLEDGE
+    (patterns + experience)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+  INFORMATION
+ (processed, meaningful data)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+DATA
+(raw facts, meaningless alone)
+```
+
+### Real-Life Example
+
+|Level|Example|
+|---|---|
+|**Data**|`38.5`, `Rahim`, `12-05-2002`|
+|**Information**|"Rahim's temperature is 38.5 degrees C on 12-May-2002"|
+|**Knowledge**|"38.5 degrees C is a fever — Rahim needs medical attention"|
+|**Wisdom**|"Given Rahim's age and history, he needs a doctor, not self-medication"|
+
+### Types of Data
+
+|Type|Example|Where Used|
+|---|---|---|
+|**Structured**|Excel tables, database rows|Banks, ERP systems|
+|**Unstructured**|Photos, videos, emails|Social media|
+|**Semi-structured**|JSON files, XML|APIs, web data|
+|**Metadata**|"Created 1 Jan 2024, file size 5MB"|File systems, databases|
+
+> [!note] Metadata = "Data about data" When you take a photo, the photo is data. The camera also records the date, time, and location — that is metadata.
 
 ---
 
 ## 🔷 What is a Database
 
-> [!quote] Simple Definition A **Database** is an organized collection of related data stored electronically so it can be easily accessed, managed, and updated.
+> [!quote] Simple Definition A **Database** is an organized, electronic collection of related data that can be easily accessed, updated, and managed.
 
-**Real-life analogy:** Think of a database like a **school register**.
+### Real-Life Analogies
 
-- It has student names, roll numbers, grades, attendance — all in one place.
-- It is organized so you can find any student quickly.
-- It is electronic, so searching takes seconds instead of minutes.
+|Database Concept|Real-Life Equivalent|
+|---|---|
+|Database|School filing cabinet with labeled folders|
+|Table|One folder (e.g., "Student Records")|
+|Row|One student's file inside that folder|
+|Column|A specific field on the file (Name, Roll No, Grade)|
 
-Without a database, data would be scattered across papers, Excel sheets, and notebooks — messy and hard to find.
+### Why "Organized" Matters
+
+```
+Without organization:             With a database:
+Files scattered everywhere        Files sorted by patient ID
+Finding one file = 30 minutes     Finding one file = 2 seconds
+Updating = changing every copy    Updating = change once, everywhere
+```
+
+### Properties of a Good Database
+
+- **Accurate** — Data is correct and up-to-date
+- **Consistent** — Same data looks the same everywhere
+- **Complete** — No missing critical information
+- **Non-redundant** — Same info not stored twice
+- **Secure** — Only authorized people can access it
 
 ---
 
 ## 🔷 What is a DBMS
 
-> [!quote] Simple Definition A **DBMS (Database Management System)** is **software** that creates, manages, and controls a database.
+> [!quote] Simple Definition A **DBMS (Database Management System)** is software that creates, manages, and controls access to a database.
 
-**Real-life analogy:** If a database is a library full of books, the DBMS is the **librarian** who:
+### The Librarian Analogy
 
-- Organizes the books
-- Helps you find what you need
-- Makes sure nobody misplaces or damages books
-- Controls who can borrow what
+```
+Database = A huge library with thousands of books
+DBMS     = The librarian + all the library systems
+
+The librarian:
+  Organizes books on shelves (stores data in tables)
+  Helps you find the right book (queries)
+  Decides who can borrow what (access control)
+  Keeps track of all borrows/returns (transactions)
+  Protects books from damage (backup and recovery)
+  Serves multiple people at once (multi-user support)
+```
 
 ### Popular DBMS Software
 
-|DBMS|Common Use|
-|---|---|
-|MySQL|Websites, apps (free)|
-|PostgreSQL|Advanced projects (free)|
-|Oracle|Large companies|
-|SQL Server|Microsoft products|
-|MongoDB|Flexible/big data|
+|DBMS|Type|Cost|Common Use|
+|---|---|---|---|
+|**MySQL**|Relational|Free|Websites, WordPress|
+|**PostgreSQL**|Relational|Free|Advanced apps|
+|**Oracle**|Relational|Paid|Large corporations|
+|**SQL Server**|Relational|Paid|Microsoft ecosystem|
+|**SQLite**|Relational|Free|Mobile apps|
+|**MongoDB**|NoSQL|Free/Paid|Flexible data|
+|**Redis**|NoSQL|Free|Caching, speed|
 
-### ✅ Why DBMS is Better Than Storing Data in Files
+### Core Functions of DBMS
 
 ```
-❌ Without DBMS:               ✅ With DBMS:
-- Many Excel files             - One central database
-- Duplicate data everywhere    - No duplicate data
-- Hard to search               - Fast search with SQL
-- No security                  - Password & permission control
-- One user at a time           - Many users at once
+1. Data Storage       — Stores data efficiently on disk
+2. Data Retrieval     — Answers queries quickly
+3. Access Control     — Only authorized users can read/write
+4. Concurrency        — Handles many users at same time
+5. Backup & Recovery  — Recovers data after crashes
+6. Data Integrity     — Ensures rules are followed
+7. Data Dictionary    — Stores info about the database structure
 ```
 
-### Pros and Cons
+---
 
-|✅ Advantages|❌ Disadvantages|
-|---|---|
-|Less duplicate data|Complex to set up initially|
-|Fast data retrieval|Expensive licensed versions (use free ones like MySQL)|
-|Supports many users at once|Requires good storage|
-|Strong security|Needs trained staff to manage|
-|Easy to maintain||
+## 🔷 File System vs DBMS
+
+Before DBMS, data was stored in simple files (text files or Excel). Understanding why DBMS replaced file systems helps you understand what DBMS solves.
+
+### Head-to-Head Comparison
+
+|Problem|File System|DBMS|
+|---|---|---|
+|**Data Redundancy**|Same data in multiple files|Stored once, used everywhere|
+|**Data Inconsistency**|Files get out of sync|Always consistent|
+|**Concurrent Access**|Two users writing = corruption|Managed safely|
+|**Security**|File-level only|Row-level, role-based|
+|**Data Integrity**|No rules enforced|Rules built in|
+|**Crash Recovery**|Manual, often impossible|Automatic|
+|**Query**|Must write custom code|SQL (standard)|
+
+### Real Example
+
+```
+University with 3 departments each keeping student data in Excel:
+
+Student "Rahim" changes address:
+File System: Must update 3 separate Excel files.
+             Miss one = wrong data forever.
+
+DBMS: Update in one place.
+      All departments see correct address instantly.
+```
 
 ---
 
 ## 🔷 Components of a DBMS
 
-A DBMS has **5 main components**. Think of it like running a restaurant:
+A DBMS has 5 major components. Think of running a restaurant:
 
 ```
-🖥️ Hardware     = The kitchen equipment (physical machines)
-💾 Software     = The restaurant management app (programs)
-📦 Data         = The food ingredients (what you store)
-📋 Procedures   = The recipes and rules (how to operate)
-🗣️ Language     = The order tickets (how you communicate with the DB)
+Hardware    = Kitchen equipment (physical machines)
+Software    = Restaurant management app (programs)
+Data        = Food ingredients (what you store)
+Procedures  = Recipes and rules (how to operate)
+Language    = Order tickets (how you communicate with DB)
 ```
 
-### Breaking It Down
+### Detailed Breakdown
 
 |Component|Real-Life Example|What It Does|
 |---|---|---|
@@ -122,272 +261,332 @@ A DBMS has **5 main components**. Think of it like running a restaurant:
 |**Software**|MySQL, Oracle app|The program that runs everything|
 |**Data**|Student records, product info|The actual information stored|
 |**Procedures**|Backup rules, user manual|Instructions for using the system|
-|**Database Language**|SQL (Structured Query Language)|How you talk to the database|
+|**Database Language**|SQL|How you talk to the database|
 
-### 👥 User Roles in a DBMS
+### Types of Data in DBMS
 
-|Role|What They Do|Real-Life Example|
+|Type|Description|
+|---|---|
+|**Operational Data**|The actual data users store (student records)|
+|**Metadata**|Data about the data (table names, column types)|
+|**System Data**|Data the DBMS uses internally (user accounts, permissions)|
+
+---
+
+## 🔷 Types of DBMS Users
+
+```
+                    ┌─────────────────────────┐
+                    │         DBMS            │
+                    └─────────────────────────┘
+                           ▲    ▲    ▲
+              ┌────────────┘    │    └────────────┐
+              ▼                 ▼                 ▼
+      [Database Admin]    [Developer]        [End User]
+```
+
+|User Type|What They Do|Real Example|
 |---|---|---|
-|**DBA** (Database Administrator)|Manages the whole system, security, access|IT Admin in a company|
-|**Application Developer**|Builds apps that connect to the database|App developer|
-|**End User**|Uses the system through apps|A bank customer checking their balance|
+|**DBA**|Manages security, backups, performance|IT admin|
+|**Database Designer**|Designs table structures|Database architect|
+|**Application Programmer**|Writes code that talks to the DB|App developer|
+|**Sophisticated User**|Writes complex SQL queries directly|Data analyst|
+|**End User**|Uses apps that use the DB (never sees SQL)|You using a banking app|
 
 ---
 
 ## 🔷 DBMS Architecture
 
-Architecture means **how the system is structured** — who talks to who.
+### 3 Schema Architecture (ANSI-SPARC)
 
-### 1-Tier Architecture (Direct Access)
+> [!quote] Simple Definition Separates how data is physically stored, how it is logically organized, and how users see it.
 
 ```
-[Developer] ──── directly talks to ──── [Database]
+┌──────────────────────────────────────────┐
+│       EXTERNAL LEVEL (View Level)        │
+│  What different users SEE                │
+│  User A sees: Student name, grade        │
+│  User B sees: Student name, fees         │
+├──────────────────────────────────────────┤
+│     CONCEPTUAL LEVEL (Logical Level)     │
+│  The complete logical structure          │
+│  All tables, columns, relationships      │
+├──────────────────────────────────────────┤
+│     INTERNAL LEVEL (Physical Level)      │
+│  How data is ACTUALLY stored on disk     │
+│  File locations, indexes, formats        │
+└──────────────────────────────────────────┘
 ```
 
-Used only in **development** (programmer testing things on their own computer). No security layer. Simple but not safe for real users.
+### Real-Life Analogy — A Hospital
 
----
+```
+Internal Level: Data on 50 hard drives, compressed, encrypted
+Conceptual:     Patient(id, name, age, doctor_id, diagnosis)
+External:       Doctor sees: name, diagnosis, appointment
+                Admin sees: name, billing, insurance
+                Patient sees: own records only
+```
 
-### 2-Tier Architecture (Client-Server)
+### 1-Tier Architecture
+
+```
+[Developer] ──── directly accesses ──── [Database]
+```
+
+Used only in development. No security layer.
+
+### 2-Tier Architecture
 
 ```
 [User] ──── [Application Layer] ──── [Database]
 ```
 
-The app sits between the user and the database.
+App sits between user and database. More secure. Example: Desktop banking app.
 
-- User never directly touches the database
-- App checks if user is allowed
-- More secure
+### 3-Tier Architecture
 
-**Example:** A desktop banking app where you log in and check your balance.
+```
+[User] ──── [GUI/Website] ──── [App Logic] ──── [Database]
+```
+
+Three clear layers. Most modern web apps use this. Example: When you use Shohoz or Pathao.
 
 ---
 
-### 3-Tier Architecture (Most Common on the Web)
+## 🔷 Physical vs Logical Data Independence
+
+### Physical Data Independence
+
+Changing how data is physically stored does NOT affect the logical structure.
 
 ```
-[User] ──── [GUI / Website] ──── [App Logic] ──── [Database]
+Before: Data on slow HDD
+After:  Data moved to fast SSD
+
+Result: Apps still work the same. Users notice only speed improvement.
 ```
 
-Three clear layers:
+### Logical Data Independence
 
-1. **GUI Layer** — What you see (the website or app screen)
-2. **App Layer** — The business rules and logic
-3. **Database Layer** — Where data is actually stored
+Changing the logical structure (tables) does NOT affect user views.
 
-**Example:** When you use Pathao or Shohoz:
+```
+Before: One big "Person" table
+After:  Split into "Student" and "Teacher" tables
 
-- You see a website/app (GUI)
-- App checks if your booking is valid (Logic)
-- Database stores your booking (Data)
+Result: Apps still work because the VIEW stays the same.
+```
 
-> [!info] Most modern websites and apps use 3-Tier Architecture.
+---
+
+# 🟩 PART 2 — DATABASE DESIGN
+
+---
+
+## 🔷 Database Design Process
+
+```
+Step 1: Requirements Analysis
+   Talk to users. What data is needed? What problems to solve?
+
+Step 2: Conceptual Design
+   Build an ER Diagram — visual map of entities and relationships.
+
+Step 3: Logical Design
+   Convert ER Diagram to tables (Relational Model).
+
+Step 4: Normalization
+   Clean up tables — remove redundancy and anomalies.
+
+Step 5: Physical Design
+   Decide storage, indexes, file formats.
+
+Step 6: Implementation
+   Write SQL to create the database.
+
+Step 7: Testing and Tuning
+   Test with real data, optimize slow queries.
+```
+
+### Analogy — Building a House
+
+|DB Design Step|House Building Equivalent|
+|---|---|
+|Requirements Analysis|Talk to client about needs|
+|Conceptual Design|Architect draws floor plan|
+|Logical Design|Engineer creates blueprints|
+|Normalization|Check for structural problems|
+|Physical Design|Choose materials and foundation|
+|Implementation|Construction begins|
+|Testing|Final inspection|
 
 ---
 
 ## 🔷 Types of Database Models
 
-A **database model** is the blueprint — how data is stored and connected.
-
-Think of it like deciding **how to arrange furniture** in a room before actually placing it.
-
-### Quick Comparison Table
+A database model is the blueprint — how data is stored and connected.
 
 |Model|Structure|Best For|Example Tool|
 |---|---|---|---|
-|**Hierarchical**|Tree (parent → child)|Simple one-to-many data|Old banking systems|
-|**Network**|Web (many connected)|Complex many-to-many|Old telecom systems|
-|**ER Model**|Diagram for planning|Designing databases|Planning phase only|
-|**Relational**|Tables (rows & columns)|Business data|MySQL, PostgreSQL|
-|**Object-Oriented**|Objects with properties|Complex software|Used in programming|
-|**NoSQL**|Flexible documents/JSON|Big data, real-time|MongoDB, Redis|
-|**Graph**|Nodes & connections|Social networks|Neo4j|
+|**Hierarchical**|Tree|One-to-many|Old IBM systems|
+|**Network**|Web|Many-to-many|Old telecom DBs|
+|**ER Model**|Visual diagram|Planning/design|Design phase only|
+|**Relational**|Tables|Most business data|MySQL, PostgreSQL|
+|**Object-Oriented**|Objects|Complex software|ObjectDB|
+|**NoSQL Document**|JSON docs|Big data, real-time|MongoDB|
+|**NoSQL Key-Value**|Key→Value|Caching, sessions|Redis|
+|**Graph**|Nodes and edges|Social networks|Neo4j|
 
----
-
-### 1. Hierarchical Model 🌳
-
-Like a **family tree**. One parent, many children. A child can only have one parent.
+### Hierarchical Model
 
 ```
-University
-   └── Department
-         ├── Course
-         ├── Teacher
-         └── Student
+Company
+  ├── HR Department
+  │     ├── Recruiter
+  │     └── Payroll
+  └── IT Department
+        ├── Developer
+        └── SysAdmin
 ```
 
-- **Good for:** Simple one-to-many relationships
-- **Bad for:** When one item belongs to multiple parents
+One parent, many children. Child can only have ONE parent. Good for top-down queries. Bad for "many parents" situations.
 
----
-
-### 2. Network Model 🕸️
-
-Like a **spider web**. A child can have more than one parent.
+### Network Model
 
 ```
-Student ──── Course 1
-   │               │
-   └──── Course 2 ──── Teacher
+Student A ──── Course: DBMS ──── Teacher X
+    └──────── Course: Java ──── Teacher Y
 ```
 
-- **Good for:** Complex many-to-many relationships
-- **Bad for:** Hard to design and maintain
+One child can have MULTIPLE parents. More flexible, very hard to maintain.
 
----
-
-### 3. Relational Model 📊 _(Most Popular)_
-
-Data stored in **tables** — like Excel sheets. Tables are connected using keys.
+### Relational Model (Most Important)
 
 ```
-Student Table:
-| ID | Name  | Dept |
-|----|-------|------|
-|  1 | Rahim | CSE  |
-|  2 | Karim | BBA  |
+Students:               Courses:
+| s_id | name | c_id |  | c_id | course_name |
+|  1   | Rahim|  C1  |  |  C1  | DBMS        |
+|  2   | Karim|  C2  |  |  C2  | Java        |
+         Foreign Key → links to → Primary Key
 ```
 
-- **Good for:** Business data, structured information
-- **Used in:** MySQL, PostgreSQL, Oracle, SQL Server
+Simple, powerful, flexible. Uses SQL. Used everywhere today.
 
----
-
-### 4. NoSQL Model 📄
-
-Data stored as flexible **JSON documents** (like a filled-in form).
+### NoSQL Document Model
 
 ```json
 {
+  "student_id": 1,
   "name": "Rahim",
-  "age": 20,
-  "courses": ["CSE", "Math", "English"]
+  "courses": ["DBMS", "Java", "Python"],
+  "address": { "city": "Dhaka", "area": "Mirpur" }
 }
 ```
 
-- **Good for:** Big data, apps that need speed and flexibility
-- **Used in:** MongoDB, Redis, Cassandra
+Flexible — no fixed structure. Scales to millions of records easily.
+
+### Graph Model
+
+```
+(Rahim) ──FRIEND──► (Karim)
+   └──LIKES──► (Cricket) ◄──LIKES──(Karim)
+```
+
+Best for relationship-heavy data like social networks.
 
 ---
 
-### 5. Graph Model 🔗
+## 🔷 ER Model
 
-Data stored as **dots (nodes)** connected by **lines (edges)**.
+> [!quote] Simple Definition The **ER Model (Entity-Relationship Model)** is a visual way to plan a database before building it.
 
-```
-[Rahim] ──Friend──► [Karim]
-  │                    │
-  └──Likes──► [Movie] ◄┘
-```
-
-- **Good for:** Social networks, recommendation systems, fraud detection
-- **Used in:** Neo4j
-
----
-
-## 🔷 ER Model — Designing a Database
-
-> [!quote] Simple Definition The **ER Model (Entity-Relationship Model)** is a **planning tool** — like drawing a map of your database before building it.
-
-You use it to answer:
-
-- What things do I need to store data about? (**Entities**)
-- What details do I need for each thing? (**Attributes**)
-- How are these things connected? (**Relationships**)
-
----
-
-### Core Concepts
-
-#### 🟦 Entity
-
-A **real-world object** you want to store data about.
-
-|Entity|Example|
-|---|---|
-|Student|Rahim, Karim, Ayesha|
-|Teacher|Mr. Ahmed, Ms. Sultana|
-|Product|Phone, Laptop|
-|Course|DBMS, Java, PHP|
-
-**Entity Set** = A group of similar entities (all students together = Student Entity Set)
-
----
-
-#### 🟡 Attributes
-
-The **details/properties** of an entity.
+### 3 Core Building Blocks
 
 ```
-Student
-  ├── Roll Number
-  ├── Name
-  ├── Age
-  ├── Gender
-  └── Address
+ENTITY      — The "things" (nouns): Student, Teacher, Course
+ATTRIBUTE   — The "details" (adjectives): name, age, roll number
+RELATIONSHIP— The "connections" (verbs): Student STUDIES Course
 ```
 
-#### Types of Attributes
+### Entity Types
+
+|Type|Description|Example|
+|---|---|---|
+|**Strong Entity**|Exists independently|Student (exists without a course)|
+|**Weak Entity**|Depends on another entity|"Order Item" depends on "Order"|
+
+### Attribute Types
 
 |Type|Meaning|Example|
 |---|---|---|
-|**Simple**|Cannot be divided further|Age, Gender|
-|**Composite**|Can be divided into smaller parts|Address → House No, Street, City|
-|**Derived**|Calculated from another attribute|Age (from Date of Birth)|
-|**Single-valued**|Only one value per entity|Roll Number|
-|**Multi-valued**|Can have many values|Phone Numbers (can have 2-3)|
+|**Simple**|Cannot be divided|Age, Gender|
+|**Composite**|Can be divided into parts|Address → House, Street, City|
+|**Derived**|Calculated from another|Age calculated from Date of Birth|
+|**Single-valued**|One value per entity|Roll Number|
+|**Multi-valued**|Can have many values|Phone Numbers|
+|**Key**|Uniquely identifies entity|Student ID|
+
+### Relationship Types
+
+#### One-to-One (1:1)
+
+```
+[Person] ──────── [Passport]
+One person has one passport.
+One passport belongs to one person.
+```
+
+#### One-to-Many (1:N)
+
+```
+[Teacher] ────── [Student1]
+              ├── [Student2]
+              └── [Student3]
+One teacher teaches MANY students.
+```
+
+#### Many-to-Many (M:N)
+
+```
+[Student1] ─── [Course: DBMS]
+[Student1] ─── [Course: Java]
+[Student2] ─── [Course: DBMS]
+One student takes MANY courses. One course has MANY students.
+```
+
+> [!important] Many-to-Many needs a Junction Table In actual databases, M:N becomes a third bridge table. Student Table + Course Table + Enrollment Table (bridge)
+
+#### Recursive Relationship
+
+```
+[Employee] ──manages──► [Employee]
+Manager is also an Employee.
+```
+
+### Degree of Relationship
+
+|Degree|Name|Entities|Example|
+|---|---|---|---|
+|1|Unary|1|Employee manages Employee|
+|2|Binary|2|Student enrolls in Course|
+|3|Ternary|3|Teacher teaches Subject in Class|
 
 ---
 
-#### 🔑 Keys — The ID Card of Each Row
+## 🔷 ER Diagram Symbols
 
-|Key Type|Simple Meaning|
-|---|---|
-|**Super Key**|Any column(s) that can uniquely identify a row|
-|**Candidate Key**|The best, minimal choices for primary key|
-|**Primary Key**|The one key chosen as the main identifier|
-|**Composite Key**|Two or more columns combined as a key|
-|**Alternative Key**|Candidate key NOT chosen as primary key|
-|**Foreign Key**|A key in one table pointing to another table|
-
-**Real-life analogy:**
-
-- Your **NID number** is a primary key — unique to only you
-- Your **phone number** is an alternative key — also unique but not the main ID
-
----
-
-#### 🔗 Relationships
-
-How entities are **connected** to each other.
-
-|Type|Meaning|Real-Life Example|
+|Symbol|Drawn As|Represents|
 |---|---|---|
-|**One-to-One**|One connects to exactly one|Person → Passport|
-|**One-to-Many**|One connects to many|Teacher → Students|
-|**Many-to-One**|Many connect to one|Students → Class|
-|**Many-to-Many**|Many connect to many|Students ↔ Courses|
-|**Recursive**|Entity connected to itself|Employee manages Employee|
+|Entity|Rectangle `[Student]`|Main object|
+|Weak Entity|Double Rectangle|Dependent object|
+|Attribute|Ellipse `(name)`|Property of entity|
+|Key Attribute|Underlined Ellipse|Unique identifier|
+|Derived Attribute|Dashed Ellipse|Calculated value|
+|Multi-valued|Double Ellipse|Multiple values|
+|Relationship|Diamond `<studies>`|Connection|
 
----
-
-### ER Diagram Symbols
-
-|Symbol|Shape|Represents|
-|---|---|---|
-|Rectangle|`[Student]`|Entity|
-|Double Rectangle|`[[Dependent]]`|Weak Entity|
-|Ellipse|`((Name))`|Attribute|
-|Underlined in ellipse|`((Roll No))`|Key Attribute|
-|Dotted ellipse|`...Age...`|Derived Attribute|
-|Double ellipse|`((Phone))`|Multi-valued Attribute|
-|Diamond|`<Studies In>`|Relationship|
-
----
-
-### 🏫 School ER Diagram (Full Example)
+### Full School ER Diagram
 
 ```mermaid
 erDiagram
@@ -404,793 +603,2178 @@ erDiagram
     TEACHER {
         int teacher_id PK
         string name
+        string specialization
     }
     SUBJECT {
         int subject_id PK
         string subject_name
+        int credits
+    }
+    ENROLLMENT {
+        int roll_no FK
+        int subject_id FK
+        int marks
+        string grade
     }
 
     STUDENT }o--|| CLASS : "studies in"
     TEACHER ||--o{ SUBJECT : "teaches"
-    CLASS ||--o{ SUBJECT : "has"
+    STUDENT ||--o{ ENROLLMENT : "enrolled in"
+    SUBJECT ||--o{ ENROLLMENT : "has"
 ```
 
 ---
 
 ## 🔷 Enhanced ER Model
 
-When databases get more complex, the basic ER Model is not enough. The **Enhanced ER Model** adds 3 powerful ideas:
+When databases get complex, the basic ER Model needs these three additions:
 
----
+### 1. Generalization (Bottom-Up)
 
-### 1. Generalization (Bottom-Up) ⬆️
-
-**Combine** similar entities into one general entity.
+Combine similar entities into one general parent entity.
 
 ```
-Savings Account ──┐
-                  ├──► Account (General)
-Current Account ──┘
+BEFORE:
+[Savings_Account]    [Current_Account]    [Fixed_Deposit]
+
+AFTER:
+           [Account]  (General Parent)
+          /     |     \
+  [Savings] [Current] [Fixed]
 ```
 
-> Think of it like: Mango and Banana are both → Fruit
+Direction: Specific → General. Like classifying Mango and Banana into "Fruit."
 
-**Direction:** Specific → General
+### 2. Specialization (Top-Down)
 
----
-
-### 2. Specialization (Top-Down) ⬇️
-
-**Divide** one general entity into specific entities.
+Divide one general entity into specific child entities.
 
 ```
-Account (General)
-    ├── Savings Account
-    ├── Current Account
-    └── Fixed Deposit Account
+BEFORE:
+[Person]
+
+AFTER:
+      [Person]  (General Parent)
+      /       \
+[Student]  [Employee]  (Specific Children)
+
+Student inherits: name, age from Person + adds roll_no, course
+Employee inherits: name, age from Person + adds salary, department
 ```
 
-> Think of it like: Vehicle → Car, Bike, Truck
+Direction: General → Specific. Like dividing "Vehicles" into Car, Bike, Truck.
 
-**Direction:** General → Specific
+### 3. Aggregation
 
----
-
-### 3. Aggregation 🔄
-
-**Treat a relationship as an entity** when a relationship itself needs to be connected to something else.
+Treat a relationship as an entity when a relationship itself must connect to something else.
 
 ```
-Center ──Offers──► Course
-                      │
-                      ▼
-                   Visitor asks about [Center + Course] together
+[Employee] ──works_on──► [Project]
+          This "works_on" relationship
+          becomes an entity itself
+                │
+                ▼
+[Manager] ──supervises──► [works_on entity]
 ```
-
-> Think of it like: "Hotel booking" is not just a hotel OR a room — it's the combination of both that a customer reserves.
-
----
 
 ### Comparison Table
 
-|Concept|Direction|Simple Meaning|
+|Feature|Generalization|Specialization|
 |---|---|---|
-|Generalization|Bottom-up (specific → general)|Combine similar things|
-|Specialization|Top-down (general → specific)|Divide into types|
-|Aggregation|Relationship → Entity|Treat a connection as a thing|
+|Direction|Bottom-Up|Top-Down|
+|Process|Combine many into one|Divide one into many|
+|Example|Savings + Current → Account|Person → Student, Employee|
 
 ---
 
-## 🔷 Codd's 12 Rules
+## 🔷 ER Model to Relational Model
 
-**E.F. Codd** invented the Relational Database concept. He defined **13 rules** (numbered 0–12) to decide if a system truly qualifies as an RDBMS.
+### Conversion Rules
 
-> [!note] Think of these as the "quality checklist" for a proper database system.
+|ER Element|Becomes|
+|---|---|
+|Strong Entity|Table with its own primary key|
+|Weak Entity|Table + foreign key of parent|
+|Simple Attribute|Column in the table|
+|Composite Attribute|Each sub-attribute becomes a column|
+|Derived Attribute|Usually NOT stored (calculated when needed)|
+|Multi-valued Attribute|Separate table + foreign key|
+|1:1 Relationship|Foreign key in either table|
+|1:N Relationship|Foreign key on the "many" side|
+|M:N Relationship|New junction/bridge table|
+|Relationship Attribute|Column in the junction table|
 
-|Rule|Name|Simple Meaning|
-|---|---|---|
-|**Rule 0**|Foundation Rule|Must fully work as a relational system|
-|**Rule 1**|Information Rule|All data must be in tables|
-|**Rule 2**|Guaranteed Access|Every value reachable via Table + Key + Column|
-|**Rule 3**|NULL Handling|NULL must be handled properly (missing/unknown)|
-|**Rule 4**|Active Catalog|DB must store its own structure info|
-|**Rule 5**|Query Language|Must support SQL or similar language|
-|**Rule 6**|View Updating|Updatable views should allow updates|
-|**Rule 7**|High-Level Operations|Insert/Update/Delete on sets of data|
-|**Rule 8**|Physical Independence|Storage changes shouldn't affect users|
-|**Rule 9**|Logical Independence|Table structure changes shouldn't affect users|
-|**Rule 10**|Integrity Independence|Rules enforced by DB itself, not outside apps|
-|**Rule 11**|Distribution Independence|Data location (city/server) shouldn't matter to users|
-|**Rule 12**|Non-Subversion|No backdoor should bypass DB rules|
+### Step-by-Step Example
+
+```
+ER Design:
+[Student] ──(enrolls in)── [Course]
+           relationship has: enrollment_date, marks
+
+Step 1: Student Table
+Student(student_id PK, name, age, address)
+
+Step 2: Course Table
+Course(course_id PK, course_name, credits)
+
+Step 3: M:N → Junction Table
+Enrollment(student_id FK, course_id FK, enrollment_date, marks)
+Primary Key = (student_id + course_id)
+```
+
+```mermaid
+erDiagram
+    STUDENT {
+        int student_id PK
+        string name
+        int age
+    }
+    COURSE {
+        int course_id PK
+        string course_name
+        int credits
+    }
+    ENROLLMENT {
+        int student_id FK
+        int course_id FK
+        date enrollment_date
+        int marks
+    }
+    STUDENT ||--o{ ENROLLMENT : "enrolls"
+    COURSE ||--o{ ENROLLMENT : "has"
+```
+
+---
+
+# 🟨 PART 3 — RELATIONAL MODEL DEEP DIVE
 
 ---
 
 ## 🔷 Basic Relational DBMS Concepts
 
-### Key Terms Explained Simply
+### Key Terminology
 
-|Term|Simple Meaning|Real-Life Example|
+|Term|Simple Meaning|Formal Name|
 |---|---|---|
-|**Table (Relation)**|Grid of rows and columns|An Excel sheet|
-|**Row (Tuple/Record)**|One complete entry|One employee's full details|
-|**Column (Attribute)**|One type of detail|The "Name" column|
-|**Attribute Domain**|Allowed values for a column|Age column → only numbers|
-|**Relation Schema**|The structure/design of a table|`Employee(ID, Name, Age, Salary)`|
-|**Primary Key**|The unique ID of each row|Employee ID|
+|Table|Grid of rows and columns|Relation|
+|Row|One complete record|Tuple|
+|Column|One type of data|Attribute|
+|Cell|One value in a row+column|Domain value|
+|Table design|Structure of a table|Relation Schema|
+|All table data|All rows in a table|Relation Instance|
 
----
-
-### Employee Table Example
+### Full Example
 
 ```
-Employee Table:
-| ID | Name   | Age | Salary |
-|----|--------|-----|--------|
-|  1 | Adam   |  34 | 13000  |
-|  2 | Alex   |  28 | 15000  |
-|  3 | Stuart |  20 | 18000  |
+Relation Schema: Employee(emp_id, name, age, department, salary)
 
-- Each ROW = one employee record (tuple)
-- Each COLUMN = one attribute (ID, Name, Age, Salary)
-- ID = Primary Key (unique for each employee)
+Relation Instance:
+| emp_id | name   | age | department | salary |
+|   1    | Adam   |  34 | HR         | 50000  |  <- Tuple 1
+|   2    | Alex   |  28 | IT         | 75000  |  <- Tuple 2
+|   3    | Stuart |  20 | Marketing  | 45000  |  <- Tuple 3
+    ^        ^       ^       ^           ^
+ Attribute  ...    ...     ...        Attribute
 ```
 
----
+### Integrity Constraints
 
-### 🛡️ Integrity Constraints (Rules That Keep Data Correct)
+These are the "laws" of a database. Breaking them = the database rejects the data.
 
-#### 1. Key Constraint
-
-- Every row must have a unique key
-- The key cannot be NULL (empty)
+#### 1. Domain Constraint
 
 ```
-❌ Wrong:
-| ID | Name |
-|  1 | Adam |
-|  1 | Alex |   ← Duplicate ID! Not allowed
-
-✅ Correct:
-|  1 | Adam |
-|  2 | Alex |   ← Each ID is unique
+Age column: ONLY accepts positive numbers
+  OK:    Age = 25
+  WRONG: Age = "twenty"
+  WRONG: Age = -5
 ```
 
-#### 2. Domain Constraint
-
-- A column can only store its allowed type of data
+#### 2. Key Constraint (Entity Integrity)
 
 ```
-❌ Wrong:
-| Age |
-| Twenty |   ← Text in a number column!
-
-✅ Correct:
-| Age |
-|  20 |
+student_id is primary key:
+  OK:    student_id = 101 (unique, not empty)
+  WRONG: student_id = NULL (empty — not allowed)
+  WRONG: Two rows with same student_id (duplicate — not allowed)
 ```
 
 #### 3. Referential Integrity Constraint
 
-- If one table points to another, the referenced data must actually exist
-
 ```
-Student Table:
-| Student ID | Course ID |
-|     1      |   C101    |  ← C101 must exist in Course Table!
+Order Table:
+| order_id | customer_id |
+|    1     |    C01      |
 
-Course Table:
-| Course ID | Course Name |
-|   C101    |    DBMS     |  ✅ It exists, so it's fine.
-
-If Course ID = C999 but C999 doesn't exist → ❌ VIOLATION
+customer_id C01 MUST exist in Customer table.
+If you add order with customer_id = C99 and C99 does not exist → REJECTED.
 ```
 
 ---
 
-## 🔷 Database Keys (Deep Dive)
+## 🔷 Database Keys
 
-Why do we need keys? Because two people can have the same name:
+> [!tip] Why Keys Exist Without keys, there is no reliable way to find, connect, or update specific records.
 
-```
-| student_id | name | phone       | age |
-|     1      | Akon | 9876723452  |  17 |
-|     2      | Akon | 9991165674  |  19 |
-```
-
-Both named **Akon** — we can't tell them apart by name. We need a unique ID → **student_id**
-
----
-
-### Key Types Explained
-
-#### 🔵 Super Key
-
-Any column (or group of columns) that can **uniquely identify** a row — even if it has extra unnecessary columns.
+### The Key Family Tree
 
 ```
-Super Keys for Student table:
-✅ student_id
-✅ phone
-✅ student_id + name   (extra, but still unique because student_id is unique)
-✅ student_id + age    (extra too)
+All possible unique identifiers
+         │
+    SUPER KEYS
+    (any combo that is unique)
+         │
+    CANDIDATE KEYS
+    (minimal — no extras)
+         │
+    ┌────┴────┐
+    │         │
+ PRIMARY   ALTERNATIVE
+   KEY       KEYS
+ (chosen)  (not chosen)
 ```
 
----
+### 1. Super Key
 
-#### 🟢 Candidate Key
-
-The **minimum** super key — no extra columns, just the essentials.
+Any column or combination that can uniquely identify a row.
 
 ```
-Candidate Keys:
-✅ student_id   (alone, uniquely identifies)
-✅ phone        (alone, uniquely identifies)
+Student(student_id, name, phone, email)
 
-❌ student_id + name  (NOT candidate key — student_id alone is enough)
+Super Keys:
+  student_id
+  phone
+  email
+  student_id + name       (extra but still unique)
+  student_id + phone      (extra but still unique)
+  NOT: name alone         (two students can share a name)
 ```
 
----
+### 2. Candidate Key
 
-#### 🔴 Primary Key
-
-The **one candidate key chosen** as the main identifier.
-
-- Must be unique
-- Cannot be NULL
-- Only one per table
+The minimal super key — uniquely identifies a row with the fewest columns.
 
 ```
-Primary Key chosen: student_id ✅
+Candidate Keys: student_id, phone, email
+NOT candidate: student_id + name  (student_id alone is enough)
+
+Rules:
+  Must be unique
+  Cannot be NULL
+  No unnecessary extra columns
+  A table can have multiple candidate keys
 ```
 
----
+### 3. Primary Key
 
-#### 🟡 Composite Key
-
-A key made from **2 or more columns** where no single column alone is unique.
+The one candidate key chosen as the main identifier.
 
 ```
-Score Table:
-| student_id | course_id | marks |
-|     1      |   C101    |  85   |
-|     1      |   C102    |  90   |
-|     2      |   C101    |  78   |
-
-student_id alone → not unique (student 1 appears twice)
-course_id alone  → not unique (C101 appears twice)
-student_id + course_id → UNIQUE ✅ = Composite Key
-```
-
----
-
-#### 🟠 Alternative Key
-
-A candidate key that was **not selected** as the primary key.
-
-```
-Candidate Keys: student_id, phone
+Candidate Keys: student_id, phone, email
 Primary Key chosen: student_id
-Alternative Key: phone (still unique, just not the main one)
+
+Why student_id and not phone?
+  Phone numbers can change
+  People can share family phones
+  student_id is controlled by the system and never changes
+```
+
+### 4. Composite Key
+
+A primary key made from two or more columns.
+
+```
+Enrollment(student_id, course_id, marks, grade)
+
+student_id alone = NOT unique (student can take many courses)
+course_id alone  = NOT unique (course has many students)
+student_id + course_id = UNIQUE → Composite Key
+```
+
+### 5. Foreign Key
+
+A column in one table that refers to the primary key of another table.
+
+```
+Order Table:
+| order_id | customer_id | amount |
+|    1     |    C001     |  5000  |
+
+Customer Table:
+| customer_id | name  |
+|    C001     | Rahim |
+
+customer_id in Order Table is a FOREIGN KEY.
+It points to customer_id in Customer Table.
+
+Rules:
+  The FK value must exist in the referenced table
+  FK can be NULL (means "no reference")
+  FK creates a parent-child relationship between tables
+```
+
+### 6. Alternative Key
+
+A candidate key that was NOT chosen as the primary key.
+
+```
+Candidate Keys: student_id, phone, email
+Primary Key: student_id
+Alternative Keys: phone, email (still unique, just not primary)
+```
+
+### 7. Natural Key vs Surrogate Key
+
+|Type|Meaning|Example|
+|---|---|---|
+|**Natural Key**|Real-world identifier|NID number, ISBN, Email|
+|**Surrogate Key**|Artificial ID created for the database|Auto-increment ID: 1, 2, 3|
+
+> [!tip] Most modern databases use surrogate keys (auto-increment IDs) as primary keys for reliability.
+
+### 8. Prime vs Non-Prime Attribute
+
+|Type|Meaning|Example|
+|---|---|---|
+|**Prime Attribute**|Part of any candidate key|student_id, phone|
+|**Non-Prime Attribute**|Not part of any candidate key|name, age|
+
+---
+
+## 🔷 Codd's 12 Rules
+
+E.F. Codd invented the relational database model. His 13 rules (Rule 0 to Rule 12) are a checklist for a true RDBMS.
+
+|Rule|Name|Simple Meaning|
+|---|---|---|
+|**0**|Foundation|Must fully work as a relational DBMS|
+|**1**|Information|All data must be stored in tables|
+|**2**|Guaranteed Access|Every value reachable via Table + Primary Key + Column|
+|**3**|NULL Handling|NULL values handled consistently (missing/unknown)|
+|**4**|Active Catalog|DB stores its own structure info (data dictionary)|
+|**5**|Query Language|Must support a comprehensive language like SQL|
+|**6**|View Updating|Updatable views must support updates|
+|**7**|High-Level Operations|Insert/Update/Delete on groups of data|
+|**8**|Physical Independence|Storage changes do not affect users|
+|**9**|Logical Independence|Table structure changes do not break user views|
+|**10**|Integrity|Rules enforced by DB itself, not outside apps|
+|**11**|Distribution|Data location does not matter to users|
+|**12**|Non-Subversion|No backdoor to bypass database rules|
+
+---
+
+## 🔷 Functional Dependency
+
+> [!quote] Simple Definition If you know the value of column A, you can determine the value of column B. Written as: A → B ("A determines B")
+
+This is the foundation of normalization.
+
+### Simple Example
+
+```
+Student(student_id, name, age, city)
+
+student_id → name   (knowing 101 tells you "Rahim")     OK
+student_id → age    (knowing 101 tells you "20")         OK
+name → city         WRONG (two Rahims can be from different cities)
+```
+
+### Types of Functional Dependency
+
+#### 1. Trivial FD
+
+B is a subset of A. Always true.
+
+```
+(student_id, name) → student_id    (student_id is part of the left side)
+```
+
+#### 2. Non-Trivial FD
+
+B is NOT part of A. This is the useful type.
+
+```
+student_id → name    (name is not part of student_id)
+```
+
+#### 3. Partial Dependency
+
+A non-key attribute depends on PART of a composite primary key.
+
+```
+Primary Key = (student_id + course_id)
+
+student_id + course_id → marks     (full key — OK)
+course_id → teacher_name           (PARTIAL DEPENDENCY — only part of key)
+```
+
+#### 4. Transitive Dependency
+
+A non-key attribute depends on another non-key attribute.
+
+```
+student_id → zip_code    (PK determines zip — OK)
+zip_code → city          (TRANSITIVE — city depends on zip, not the PK)
+```
+
+#### 5. Multivalued Dependency
+
+One attribute determines multiple independent values.
+
+```
+student →→ course    (student has many courses)
+student →→ hobby     (student has many hobbies)
+courses and hobbies are INDEPENDENT of each other
 ```
 
 ---
 
-#### 🔗 Foreign Key
+## 🔷 Normalization
 
-A column in one table that **points to the primary key** of another table. This is how tables are connected.
+> [!quote] Simple Definition Normalization is a step-by-step process to organize tables to reduce data repetition and prevent errors.
 
-```
-Student Table:              Course Table:
-| student_id | course_id |  | course_id | course_name |
-|     1      |   C101    |→ |   C101    |    DBMS     |
-
-course_id in Student Table is a FOREIGN KEY pointing to Course Table
-```
-
----
-
-### Key Hierarchy (How They Relate)
+### The Messy Room Analogy
 
 ```
-Super Keys  (biggest group — all unique identifiers)
-    │
-    ▼
-Candidate Keys  (minimal super keys — no extras)
-    │
-    ├──► Primary Key    (the one chosen)
-    └──► Alternative Key (the ones not chosen)
+BEFORE: Clothes in wardrobe + under bed + on chair + in bathroom
+        Finding a shirt = search everywhere
+        Something missing = check 4 places
+
+AFTER:  Shirts in wardrobe section 1
+        Pants in wardrobe section 2
+        Finding a shirt = check one place only
 ```
 
----
+### The Three Anomalies (Problems Without Normalization)
 
-## 🔷 Normalization — Cleaning Up Data
-
-> [!quote] Simple Definition **Normalization** = Organizing database tables to reduce repetition and prevent errors.
-
-**Real-life analogy:** Imagine a messy room where the same book is in 5 different places. Normalization is like **tidying up** — one place for each thing, no duplicates.
-
----
-
-### ❌ Problems WITHOUT Normalization
-
-#### Unnormalized Table (Bad Design)
+#### Insertion Anomaly
 
 ```
-| rollno | name | branch | hod   | office_tel |
-|   401  | Akon |  CSE   | Mr. X |   53337    |
-|   402  | Bkon |  CSE   | Mr. X |   53337    |
-|   403  | Ckon |  CSE   | Mr. X |   53337    |
-|   404  | Dkon |  CSE   | Mr. X |   53337    |
+Table: | rollno | name | branch | hod   | phone |
+       |  401   | Akon |  CSE   | Mr. X | 53337 |
+
+You want to add new branch "EEE" with HOD Mr. Y,
+but no students have joined EEE yet.
+You CANNOT add branch info without a student. → Insertion Anomaly
 ```
 
-Notice `branch`, `hod`, and `office_tel` are repeated 4 times!
-
----
-
-#### Problem 1: Insertion Anomaly
-
-**You can't add data properly because something else is missing.**
-
-Example: A new branch "EEE" has no students yet. You can't add branch details because there's no student row to attach it to.
-
----
-
-#### Problem 2: Update Anomaly
-
-**Changing one piece of info requires updating many rows.**
-
-Example: Mr. X is replaced as HOD. You must update 400 rows. Miss one row → data becomes wrong.
-
----
-
-#### Problem 3: Deletion Anomaly
-
-**Deleting one record accidentally removes other important info.**
-
-Example: Only one student is in the "EEE" branch. Delete that student → the EEE branch information disappears too!
-
----
-
-### ✅ Solution: Separate Tables
+#### Update Anomaly
 
 ```
-Student Table:            Branch Table:
-| rollno | name | branch |  | branch | hod   | tel   |
-|  401   | Akon |  CSE   |  |  CSE   | Mr. X | 53337 |
-|  402   | Bkon |  CSE   |  |  EEE   | Ms. Y | 67890 |
+Mr. X is replaced by Mr. Z as CSE HOD.
+You must update EVERY row that mentions CSE.
+Miss one row → two different HODs for same branch = WRONG DATA → Update Anomaly
 ```
 
-Now branch info is stored once. No repetition. No anomalies.
-
----
-
-## 🔷 Normal Forms — Step by Step
-
-Normalization happens in stages called **Normal Forms**.
+#### Deletion Anomaly
 
 ```
-Raw/Messy Table
-      │
-      ▼
-    1NF  →  Remove multiple values from one cell
-      │
-      ▼
-    2NF  →  Remove partial dependency
-      │
-      ▼
-    3NF  →  Remove transitive dependency
-      │
-      ▼
-   BCNF  →  Stronger version of 3NF
-      │
-      ▼
-    4NF  →  Remove multi-valued dependency
-      │
-      ▼
-    5NF  →  Remove join dependency (advanced)
+Only one student in EEE (rollno 405) leaves.
+You delete rollno 405.
+EEE branch information is also gone! → Deletion Anomaly
+```
+
+### Solution: Separate the Tables
+
+```
+Student Table:               Branch Table:
+| rollno | name | branch |   | branch | hod   | phone |
+|  401   | Akon |  CSE   |   |  CSE   | Mr. X | 53337 |
+|  402   | Bkon |  CSE   |   |  EEE   | Mr. Y | 67890 |
+
+Now:
+  Add new branch without students (no insertion anomaly)
+  Change HOD in one place only (no update anomaly)
+  Delete student without losing branch info (no deletion anomaly)
 ```
 
 ---
 
-### 🔹 1NF — First Normal Form
-
-**Rule: One cell = One value**
+## 🔷 Normal Forms
 
 ```
-❌ BAD (Not in 1NF):
-| roll_no | name | subject   |
-|   101   | Akon | OS, CN    |  ← Two subjects in one cell!
-|   102   | Bkon | C, C++    |  ← Two subjects in one cell!
-
-✅ GOOD (In 1NF):
-| roll_no | name | subject |
-|   101   | Akon |   OS    |
-|   101   | Akon |   CN    |  ← Separate rows, one value each
-|   102   | Bkon |    C    |
-|   102   | Bkon |   C++   |
+Unnormalized Table
+       ↓
+     1NF  — Fix: multiple values in one cell
+       ↓
+     2NF  — Fix: partial dependency
+       ↓
+     3NF  — Fix: transitive dependency
+       ↓
+    BCNF  — Fix: non-super-key determinants
+       ↓
+     4NF  — Fix: multi-valued dependency
+       ↓
+     5NF  — Fix: join dependency
 ```
 
-**4 Rules of 1NF:**
+### 1NF — First Normal Form
 
-1. One value per cell
-2. Same data type in each column
-3. Each column has a unique name
-4. Order of rows doesn't matter
-
----
-
-### 🔹 2NF — Second Normal Form
-
-**Rule: No partial dependency** (Every non-key column must depend on the FULL primary key, not just part of it)
-
-This only matters when the primary key is a **composite key** (2+ columns).
+**Rule: Every cell must contain ONE value only.**
 
 ```
-Score Table (Composite Key = student_id + subject_id):
+WRONG (Not in 1NF):
+| emp_id | name  | skills             |
+|   1    | John  | Python, JavaScript |
+|   2    | Darth | HTML, CSS, Java    |
 
-| student_id | subject_id | marks | teacher      |
-|     1      |     1      |  70   | Java Teacher |
-|     1      |     2      |  75   | C++ Teacher  |
-|     2      |     1      |  80   | Java Teacher |
-
-Problem: "teacher" depends only on "subject_id", not on student_id.
-         This is PARTIAL DEPENDENCY ❌
-
-❌ subject_id → teacher   (only part of the key decides teacher)
-✅ student_id + subject_id → marks  (full key decides marks)
+CORRECT (In 1NF):
+| emp_id | name  | skill      |
+|   1    | John  | Python     |
+|   1    | John  | JavaScript |
+|   2    | Darth | HTML       |
+|   2    | Darth | CSS        |
+|   2    | Darth | Java       |
 ```
 
-**Fix:** Move `teacher` to the Subject table.
+4 Rules of 1NF:
 
-```
-Subject Table:               Score Table (Fixed):
-| subject_id | teacher     |  | student_id | subject_id | marks |
-|     1      | Java Teacher|  |     1      |     1      |  70   |
-|     2      | C++ Teacher |  |     1      |     2      |  75   |
-```
+|Rule|Meaning|
+|---|---|
+|Atomic values|One value per cell|
+|Same type|Column stores same data type|
+|Unique column names|No two columns with same name|
+|Order does not matter|Swapping rows = same data|
 
----
+### 2NF — Second Normal Form
 
-### 🔹 3NF — Third Normal Form
+**Rule: No partial dependency. Every non-key column must depend on the FULL primary key.**
 
-**Rule: No transitive dependency** (A non-key column should NOT depend on another non-key column)
+> [!warning] Only matters when primary key is composite (2+ columns)
 
 ```
 Score Table:
-| student_id | subject_id | marks | exam_name  | total_marks |
-|     1      |     1      |  70   |   Mains    |     70      |
-|     2      |     1      |  42   | Practicals |     30      |
+Primary Key = (student_id + subject_id)
 
-Problem: 
-  student_id + subject_id → exam_name ✅
-  exam_name → total_marks ❌ (non-key deciding another non-key!)
+| student_id | subject_id | marks | teacher_name  |
+|     1      |     1      |  70   | Java Teacher  |
+|     1      |     2      |  75   | C++ Teacher   |
 
-This is TRANSITIVE DEPENDENCY
+FULL DEPENDENCY (OK):
+  student_id + subject_id → marks
+
+PARTIAL DEPENDENCY (BAD):
+  subject_id → teacher_name  (only PART of key determines teacher)
+
+Fix: Move teacher_name to Subject table.
+
+Subject Table:
+| subject_id | subject_name | teacher_name  |
+|     1      | Java         | Java Teacher  |
+|     2      | C++          | C++ Teacher   |
+
+Score Table (fixed):
+| student_id | subject_id | marks |
+|     1      |     1      |  70   |
 ```
 
-**Fix:** Create a separate Exam table.
+### 3NF — Third Normal Form
+
+**Rule: No transitive dependency. Non-key columns must depend directly on the primary key.**
 
 ```
-Exam Table:                    Score Table (Fixed):
-| exam_id | exam_name  | total |  | student_id | subject_id | marks | exam_id |
-|    1    |   Mains    |  70   |  |     1      |     1      |  70   |    1    |
-|    2    | Practicals |  30   |  |     2      |     1      |  42   |    2    |
+Pattern that VIOLATES 3NF:
+Primary Key → Non-key A → Non-key B  (chain is wrong)
+
+Should be:
+Primary Key → Non-key A  (direct)
+Primary Key → Non-key B  (direct)
+
+Example:
+Student(student_id, name, zip_code, city)
+
+student_id → zip_code  (OK — PK directly determines zip)
+zip_code → city        (TRANSITIVE — city depends on zip, not student_id)
+
+Fix:
+Student(student_id, name, zip_code)
+ZipCodes(zip_code, city, state)
 ```
 
----
+### BCNF — Boyce-Codd Normal Form
 
-### 🔹 BCNF — Boyce-Codd Normal Form (3.5NF)
+**Rule: For every A → B, A must be a super key.**
 
-**Rule: In every dependency A → B, A must be a Super Key**
-
-BCNF is stricter than 3NF. It catches hidden problems 3NF misses.
+BCNF is stricter than 3NF and catches hidden problems 3NF misses.
 
 ```
 Enrollment Table:
-| student_id | subject   | professor |
-|    101     |   Java    |  P.Java   |
-|    101     |   C++     |  P.Cpp    |
-|    102     |   Java    | P.Java2   |
+| student | subject  | professor  |
+|  101    | Math     | Prof. Ali  |
+|  102    | Math     | Prof. Khan |
 
-Rules: professor → subject  (one professor teaches only one subject)
-       student_id + subject → professor
+Rules: professor → subject (one professor teaches one subject)
+       student + subject → professor
 
-Problem: "professor → subject" exists, but "professor" is NOT a super key!
-         Many students can have the same professor. ❌
+professor → subject exists, but professor is NOT a super key.
+(Many students can have the same professor.)
+→ BCNF VIOLATION
+
+Fix:
+ProfessorSubject(professor, subject)   professor is PK here
+StudentProfessor(student, professor)   junction table
 ```
 
-**Fix:** Split into two tables.
+### 4NF — Fourth Normal Form
+
+**Rule: No multi-valued dependency. A table should not store two independent multi-valued facts.**
 
 ```
-Professor Table:               Student Enrollment Table:
-| p_id | professor | subject |  | student_id | p_id |
-|   1  |  P.Java   |  Java   |  |    101     |   1  |
-|   2  |  P.Cpp    |  C++    |  |    101     |   2  |
-|   3  | P.Java2   |  Java   |  |    102     |   3  |
-```
-
-Now `p_id → professor, subject` and p_id IS a super key. ✅
-
----
-
-### 🔹 4NF — Fourth Normal Form
-
-**Rule: No multi-valued dependency** (A table should not store two independent multi-valued facts together)
-
-```
-❌ BAD:
+WRONG:
 | student | course  | hobby    |
-|  Rahim  |  DBMS   | Cricket  |
-|  Rahim  |  Java   | Football |
+|  Rahim  | DBMS    | Cricket  |
+|  Rahim  | DBMS    | Football |  DBMS repeated for each hobby
+|  Rahim  | Java    | Cricket  |  Cricket repeated for each course
+|  Rahim  | Java    | Football |
 
-Problem: Course and Hobby are INDEPENDENT of each other.
-         Rahim's courses have nothing to do with Rahim's hobbies.
-         Storing them together creates confusing repetitions.
+For 2 courses + 2 hobbies = 4 rows (2x2 explosion of repetition)
+
+CORRECT (4NF):
+StudentCourses(student, course)
+StudentHobbies(student, hobby)
 ```
 
-**Fix:** Separate tables for each multi-valued fact.
+### 5NF — Fifth Normal Form
 
+**Rule: No join dependency.**
+
+If a table can be split into smaller tables and joined back without losing any data, it should be decomposed.
+
+> [!info] Most databases stop at BCNF or 4NF. 5NF is theoretically important but rarely applied daily.
+
+### Normal Forms Summary
+
+|Form|Problem Solved|Test Question|Fix|
+|---|---|---|---|
+|**1NF**|Multiple values per cell|Does any cell have a list?|Separate rows or table|
+|**2NF**|Partial dependency|Does non-key depend on PART of composite key?|Move column to right table|
+|**3NF**|Transitive dependency|Does a non-key depend on another non-key?|Create new table|
+|**BCNF**|Non-superkey determinant|Does any non-super-key determine another column?|Split the table|
+|**4NF**|Multi-valued dependency|Are two independent multi-valued facts together?|Separate into tables|
+|**5NF**|Join dependency|Can this be split and perfectly rejoined?|Decompose|
+
+---
+
+# 🟧 PART 4 — SQL (STRUCTURED QUERY LANGUAGE)
+
+---
+
+## 🔷 What is SQL
+
+> [!quote] Simple Definition SQL is the standard language used to communicate with a relational database.
 
 ```
-✅ Student-Course Table:      ✅ Student-Hobby Table:
-| student | course |          | student | hobby    |
-|  Rahim  |  DBMS  |          |  Rahim  | Cricket  |
-|  Rahim  |  Java  |          |  Rahim  | Football |
+You want to:                     SQL:
+See all students            →    SELECT * FROM students;
+Add a new student           →    INSERT INTO students VALUES (...);
+Update a student's grade    →    UPDATE students SET grade='A' WHERE id=1;
+Delete a student record     →    DELETE FROM students WHERE id=1;
+Create a new table          →    CREATE TABLE teachers (...);
+```
+
+### SQL is Divided into 5 Categories
+
+```
+SQL
+ ├── DDL (Data Definition Language)      CREATE, ALTER, DROP, TRUNCATE
+ ├── DML (Data Manipulation Language)    INSERT, UPDATE, DELETE
+ ├── DQL (Data Query Language)           SELECT
+ ├── DCL (Data Control Language)         GRANT, REVOKE
+ └── TCL (Transaction Control Language)  COMMIT, ROLLBACK, SAVEPOINT
 ```
 
 ---
 
-### 🔹 5NF — Fifth Normal Form (Advanced)
+## 🔷 SQL Data Types
 
-**Rule: No join dependency**
+### Numeric Types
 
-When a complex table can be split into smaller tables and **joined back perfectly without losing any data**, that's 5NF.
-
-This is an advanced concept used in very complex database designs. Most real-world databases stop at BCNF or 4NF.
-
----
-
-### 📊 Normal Forms Summary
-
-|Normal Form|Problem It Solves|Key Condition|
+|Type|What It Stores|Example|
 |---|---|---|
-|**1NF**|Multiple values in one cell|One cell = one value|
-|**2NF**|Partial dependency|Non-key column must depend on FULL key|
-|**3NF**|Transitive dependency|Non-key column must NOT depend on another non-key|
-|**BCNF**|Hidden dependency|Every determinant must be a super key|
-|**4NF**|Multi-valued dependency|No independent multiple values in one table|
-|**5NF**|Join dependency|Split without data loss|
+|`INT`|Whole numbers|Age: 25, Quantity: 100|
+|`BIGINT`|Very large whole numbers|Population: 1700000000|
+|`DECIMAL(p,s)`|Exact decimal numbers|Price: 1999.99|
+|`FLOAT`|Approximate decimal|Scientific measurements|
+
+### Text Types
+
+|Type|What It Stores|Example|
+|---|---|---|
+|`CHAR(n)`|Fixed-length text|Country code: 'BD'|
+|`VARCHAR(n)`|Variable-length text|Name: 'Rahim'|
+|`TEXT`|Very long text|Product description|
+
+### Date and Time Types
+
+|Type|Stores|Example|
+|---|---|---|
+|`DATE`|Date only|'2024-01-15'|
+|`TIME`|Time only|'14:30:00'|
+|`DATETIME`|Date + Time|'2024-01-15 14:30:00'|
+|`TIMESTAMP`|Date + Time + auto-record|When row was last changed|
+
+### Other Types
+
+|Type|Stores|Example|
+|---|---|---|
+|`BOOLEAN`|True or False|is_active: TRUE|
+|`BLOB`|Files (binary)|Profile photo, PDF|
+|`ENUM`|One value from fixed list|status: 'active', 'inactive'|
+
+---
+
+## 🔷 DDL — Data Definition Language
+
+DDL commands define the STRUCTURE of your database.
+
+### CREATE TABLE
+
+```sql
+CREATE TABLE students (
+    student_id   INT          PRIMARY KEY AUTO_INCREMENT,
+    name         VARCHAR(100) NOT NULL,
+    age          INT          CHECK (age > 0 AND age < 120),
+    email        VARCHAR(200) UNIQUE,
+    branch       VARCHAR(50),
+    enrolled_on  DATE         DEFAULT CURRENT_DATE
+);
+```
+
+Breaking it down:
+
+```
+student_id INT PRIMARY KEY AUTO_INCREMENT
+             auto-numbers each new row as 1, 2, 3...
+
+name VARCHAR(100) NOT NULL
+     cannot be empty
+
+email VARCHAR(200) UNIQUE
+     no two rows can have same email
+
+age INT CHECK (age > 0 AND age < 120)
+    must pass this condition to be accepted
+```
+
+### ALTER TABLE
+
+```sql
+-- Add a new column
+ALTER TABLE students ADD COLUMN phone VARCHAR(15);
+
+-- Change a column data type
+ALTER TABLE students MODIFY COLUMN age SMALLINT;
+
+-- Drop a column
+ALTER TABLE students DROP COLUMN phone;
+```
+
+### DROP vs TRUNCATE
+
+```sql
+-- Permanently delete a table and ALL its data
+DROP TABLE students;
+
+-- Delete ALL rows but keep the table structure
+TRUNCATE TABLE students;
+```
+
+|Command|Deletes Structure?|Deletes Data?|Can Rollback?|
+|---|---|---|---|
+|`DROP`|Yes|Yes|No|
+|`TRUNCATE`|No|Yes|No|
+|`DELETE` (DML)|No|Yes (selected rows)|Yes|
+
+> [!warning] DROP and TRUNCATE are permanent. Always backup first.
+
+### Constraints in DDL
+
+|Constraint|Purpose|
+|---|---|
+|`PRIMARY KEY`|Unique + Not Null identifier|
+|`FOREIGN KEY`|Links to another table's primary key|
+|`UNIQUE`|No duplicate values allowed|
+|`NOT NULL`|Column cannot be empty|
+|`DEFAULT`|Auto-fills value if none provided|
+|`CHECK`|Column must pass a condition|
+
+---
+
+## 🔷 DML — Data Manipulation Language
+
+DML commands manipulate the DATA inside tables.
+
+### INSERT
+
+```sql
+-- Insert one row
+INSERT INTO students (student_id, name, age, email, branch)
+VALUES (1, 'Rahim', 20, 'rahim@email.com', 'CSE');
+
+-- Insert multiple rows at once
+INSERT INTO students (name, age, branch) VALUES
+    ('Ayesha', 19, 'CSE'),
+    ('Samin', 21, 'EEE'),
+    ('Rima', 20, 'BBA');
+```
+
+### UPDATE
+
+```sql
+-- Update one field for one student
+UPDATE students SET age = 21 WHERE student_id = 1;
+
+-- Update multiple fields
+UPDATE students SET age = 23, branch = 'IT' WHERE student_id = 2;
+```
+
+> [!warning] Always use WHERE with UPDATE `UPDATE students SET age = 0;` sets EVERY student's age to 0!
+
+### DELETE
+
+```sql
+-- Delete one row
+DELETE FROM students WHERE student_id = 5;
+
+-- Delete rows matching a condition
+DELETE FROM students WHERE branch = 'EEE';
+```
+
+> [!warning] Always use WHERE with DELETE `DELETE FROM students;` empties the entire table!
+
+---
+
+## 🔷 DQL — SELECT Queries
+
+SELECT is the most used command in SQL. It retrieves data.
+
+### Basic SELECT
+
+```sql
+-- All columns, all rows
+SELECT * FROM students;
+
+-- Specific columns
+SELECT name, age FROM students;
+
+-- Column alias (rename for display)
+SELECT name AS student_name, age AS student_age FROM students;
+```
+
+### SELECT with WHERE (Filtering)
+
+```sql
+-- Students older than 18
+SELECT * FROM students WHERE age > 18;
+
+-- Students in CSE AND older than 20
+SELECT * FROM students WHERE branch = 'CSE' AND age > 20;
+
+-- Students in CSE OR IT
+SELECT * FROM students WHERE branch = 'CSE' OR branch = 'IT';
+
+-- Students whose name starts with 'R'
+SELECT * FROM students WHERE name LIKE 'R%';
+
+-- Students aged between 18 and 22
+SELECT * FROM students WHERE age BETWEEN 18 AND 22;
+
+-- Students in specific branches
+SELECT * FROM students WHERE branch IN ('CSE', 'IT', 'EEE');
+
+-- Students with no email
+SELECT * FROM students WHERE email IS NULL;
+
+-- Students with an email
+SELECT * FROM students WHERE email IS NOT NULL;
+```
+
+### LIKE Pattern Guide
+
+|Pattern|Meaning|Example Match|
+|---|---|---|
+|`'R%'`|Starts with R|Rahim, Rima, Roy|
+|`'%im'`|Ends with "im"|Rahim, Karim|
+|`'%ah%'`|Contains "ah"|Rahim, Fahad|
+|`'_a%'`|Second letter is 'a'|Karim, Rahim|
+|`'___'`|Exactly 3 characters|CSE, BBA, EEE|
+
+---
+
+## 🔷 SQL Clauses
+
+### ORDER BY
+
+```sql
+-- Sort youngest first
+SELECT * FROM students ORDER BY age ASC;
+
+-- Sort oldest first
+SELECT * FROM students ORDER BY age DESC;
+
+-- Sort by branch, then by age
+SELECT * FROM students ORDER BY branch ASC, age DESC;
+```
+
+### LIMIT
+
+```sql
+-- Get only first 5 results
+SELECT * FROM students LIMIT 5;
+
+-- Skip first 10, then get next 5 (pagination)
+SELECT * FROM students LIMIT 5 OFFSET 10;
+```
+
+### DISTINCT
+
+```sql
+-- Show each branch name only once
+SELECT DISTINCT branch FROM students;
+```
+
+### GROUP BY
+
+```sql
+-- Count students per branch
+SELECT branch, COUNT(*) AS total_students
+FROM students
+GROUP BY branch;
+
+-- Average age per branch
+SELECT branch, AVG(age) AS avg_age
+FROM students
+GROUP BY branch;
+```
+
+### HAVING
+
+```sql
+-- Show only branches with more than 10 students
+SELECT branch, COUNT(*) AS total
+FROM students
+GROUP BY branch
+HAVING COUNT(*) > 10;
+```
+
+> [!note] WHERE vs HAVING WHERE filters individual ROWS before grouping. HAVING filters GROUPS after grouping.
+
+```sql
+-- Combining WHERE and HAVING:
+SELECT branch, AVG(age) as avg_age
+FROM students
+WHERE age > 17              -- filter rows first
+GROUP BY branch
+HAVING AVG(age) > 19;      -- then filter groups
+```
+
+---
+
+## 🔷 SQL Aggregate Functions
+
+|Function|What It Does|Example|
+|---|---|---|
+|`COUNT(*)`|Count rows|How many students?|
+|`SUM(col)`|Add up values|Total salary|
+|`AVG(col)`|Calculate average|Average age|
+|`MAX(col)`|Find maximum|Highest mark|
+|`MIN(col)`|Find minimum|Lowest salary|
+
+```sql
+-- All together with GROUP BY
+SELECT
+    department,
+    COUNT(*) AS headcount,
+    AVG(salary) AS avg_salary,
+    MAX(salary) AS top_salary,
+    MIN(salary) AS min_salary
+FROM employees
+GROUP BY department
+ORDER BY avg_salary DESC;
+```
+
+---
+
+## 🔷 SQL Joins
+
+Joins combine rows from two or more tables based on a related column.
+
+> [!tip] Think of Joins Like Merging Two Lists You have a list of students and a list of courses. JOIN = combine them based on a shared column.
+
+### Sample Tables
+
+```
+Student:                       Enrollment:
+| s_id | name   | branch |     | s_id | course | marks |
+|  1   | Rahim  |  CSE   |     |  1   | DBMS   |  85   |
+|  2   | Karim  |  IT    |     |  1   | Java   |  72   |
+|  3   | Ayesha |  EEE   |     |  2   | DBMS   |  90   |
+|  4   | Samin  |  CSE   |     (Samin has NO enrollment)
+```
+
+### INNER JOIN
+
+Returns only rows that have matches in BOTH tables.
+
+```sql
+SELECT s.name, s.branch, e.course, e.marks
+FROM students s
+INNER JOIN enrollment e ON s.s_id = e.s_id;
+```
+
+```
+Result:
+| name  | branch | course | marks |
+| Rahim |  CSE   | DBMS   |  85   |
+| Rahim |  CSE   | Java   |  72   |
+| Karim |  IT    | DBMS   |  90   |
+
+Ayesha and Samin NOT included — no enrollment match.
+```
+
+### LEFT JOIN
+
+Returns ALL rows from left table, matched rows from right. Unmatched = NULL.
+
+```sql
+SELECT s.name, s.branch, e.course, e.marks
+FROM students s
+LEFT JOIN enrollment e ON s.s_id = e.s_id;
+```
+
+```
+Result:
+| name   | branch | course | marks |
+| Rahim  | CSE    | DBMS   |  85   |
+| Rahim  | CSE    | Java   |  72   |
+| Karim  | IT     | DBMS   |  90   |
+| Ayesha | EEE    | NULL   | NULL  |  included even without enrollment
+| Samin  | CSE    | NULL   | NULL  |  included even without enrollment
+```
+
+Use case: "Show ALL students, and their courses if they have any."
+
+### RIGHT JOIN
+
+Returns ALL rows from right table, matched from left. Unmatched = NULL. Use case: "Show ALL enrollments, and student info if available."
+
+### FULL OUTER JOIN
+
+Returns ALL rows from BOTH tables. Unmatched sides = NULL. Use case: "Show everything from both tables."
+
+### CROSS JOIN
+
+Every row of first table combined with every row of second.
+
+```sql
+SELECT s.name, c.course_name FROM students s CROSS JOIN courses c;
+```
+
+4 students × 3 courses = 12 rows. Use case: Generating all possible combinations.
+
+### SELF JOIN
+
+A table joined with itself. Used for recursive relationships.
+
+```sql
+-- Find employees and their managers
+SELECT e1.name AS employee, e2.name AS manager
+FROM employees e1
+INNER JOIN employees e2 ON e1.manager_id = e2.emp_id;
+```
+
+### Join Visual Summary
+
+```
+LEFT JOIN:     RIGHT JOIN:    INNER JOIN:    FULL OUTER JOIN:
+[ L ██ ]       [ ██ R ]       [   ██  ]      [ L ██ R ]
+All of L        All of R       Only overlap   Everything
++ overlap       + overlap
+```
+
+---
+
+## 🔷 SQL Subqueries
+
+A subquery is a query inside another query. Inner query runs first.
+
+```sql
+-- Find students older than the average age
+SELECT name, age FROM students
+WHERE age > (SELECT AVG(age) FROM students);
+
+-- Find students enrolled in DBMS course
+SELECT name FROM students
+WHERE student_id IN (
+    SELECT student_id FROM enrollment WHERE course = 'DBMS'
+);
+
+-- Find the student with highest marks
+SELECT name FROM students
+WHERE student_id = (
+    SELECT student_id FROM enrollment ORDER BY marks DESC LIMIT 1
+);
+```
+
+### Types of Subqueries
+
+|Type|Returns|Used In|
+|---|---|---|
+|**Scalar**|One value|WHERE, SELECT|
+|**Row**|One row|WHERE with comparison|
+|**Column (IN)**|One column of values|WHERE column IN (...)|
+|**Table**|Multiple rows and columns|FROM clause|
+
+---
+
+## 🔷 SQL Views
+
+> [!quote] Simple Definition A View is a saved SQL query that acts like a virtual table.
+
+```sql
+-- Create a view showing only CSE students
+CREATE VIEW cse_students AS
+SELECT student_id, name, age, email
+FROM students
+WHERE branch = 'CSE';
+
+-- Use the view like a table
+SELECT * FROM cse_students;
+
+-- Delete the view
+DROP VIEW cse_students;
+```
+
+### Why Use Views?
+
+|Reason|Explanation|
+|---|---|
+|**Security**|Hide sensitive columns from certain users|
+|**Simplicity**|Hide complex joins behind a simple name|
+|**Consistency**|Reuse the same query everywhere|
+|**Abstraction**|Table structure can change; view stays the same|
+
+---
+
+## 🔷 SQL Indexes
+
+> [!quote] Simple Definition An Index is a data structure that makes searching faster — like the index at the back of a textbook.
+
+```
+Without index:
+Find "Rahim" in 1,000,000 rows → check all 1,000,000 rows (SLOW)
+
+With index on name:
+Find "Rahim" → check index → jump directly to row 452,891 (FAST)
+```
+
+```sql
+-- Create a simple index
+CREATE INDEX idx_student_name ON students(name);
+
+-- Create a unique index
+CREATE UNIQUE INDEX idx_student_email ON students(email);
+
+-- Composite index
+CREATE INDEX idx_branch_age ON students(branch, age);
+
+-- Drop an index
+DROP INDEX idx_student_name ON students;
+```
+
+### Index Trade-offs
+
+||With Index|Without Index|
+|---|---|---|
+|SELECT speed|Fast|Slow|
+|INSERT speed|Slower|Faster|
+|UPDATE speed|Slower|Faster|
+|Storage|More|Less|
+
+### When to Use Indexes
+
+Use on: columns frequently in WHERE, JOIN, ORDER BY, high uniqueness columns. Avoid on: rarely queried columns, tiny tables, frequently updated columns.
+
+---
+
+## 🔷 SQL Stored Procedures and Functions
+
+### Stored Procedure
+
+A saved block of SQL code you can call by name.
+
+```sql
+-- Create a stored procedure
+DELIMITER //
+CREATE PROCEDURE GetStudentsByBranch(IN branch_name VARCHAR(50))
+BEGIN
+    SELECT student_id, name, age
+    FROM students
+    WHERE branch = branch_name;
+END //
+DELIMITER ;
+
+-- Call the stored procedure
+CALL GetStudentsByBranch('CSE');
+CALL GetStudentsByBranch('IT');
+```
+
+### Function
+
+```sql
+DELIMITER //
+CREATE FUNCTION GetFullName(first_name VARCHAR(50), last_name VARCHAR(50))
+RETURNS VARCHAR(100)
+BEGIN
+    RETURN CONCAT(first_name, ' ', last_name);
+END //
+DELIMITER ;
+
+-- Use the function
+SELECT GetFullName('Nurul', 'Amin') AS full_name;
+-- Returns: "Nurul Amin"
+```
+
+### Procedure vs Function
+
+|Feature|Stored Procedure|Function|
+|---|---|---|
+|Returns|Nothing (or output params)|Always returns a value|
+|Called with|CALL procedure_name()|Used in SELECT/WHERE|
+|Use case|Complex operations|Reusable calculations|
+
+---
+
+## 🔷 SQL Triggers
+
+> [!quote] Simple Definition A Trigger is code that runs automatically when something happens in the database.
+
+Think of it as an alarm — automatically fires on a specific event.
+
+```sql
+-- Trigger: log when a student is deleted
+CREATE TABLE deletion_log (
+    student_id INT,
+    name VARCHAR(100),
+    deleted_at DATETIME
+);
+
+DELIMITER //
+CREATE TRIGGER after_student_delete
+AFTER DELETE ON students
+FOR EACH ROW
+BEGIN
+    INSERT INTO deletion_log (student_id, name, deleted_at)
+    VALUES (OLD.student_id, OLD.name, NOW());
+END //
+DELIMITER ;
+```
+
+### Trigger Timing
+
+|Timing|Event|Use Case|
+|---|---|---|
+|`BEFORE INSERT`|Before new row added|Validate data|
+|`AFTER INSERT`|After new row added|Log the addition|
+|`BEFORE UPDATE`|Before row changed|Validate changes|
+|`AFTER UPDATE`|After row changed|Log what changed|
+|`BEFORE DELETE`|Before row removed|Check if safe|
+|`AFTER DELETE`|After row removed|Archive deleted data|
+
+### OLD and NEW in Triggers
+
+```sql
+-- OLD = row values BEFORE the change
+-- NEW = row values AFTER the change
+
+CREATE TRIGGER before_salary_update
+BEFORE UPDATE ON employees
+FOR EACH ROW
+BEGIN
+    IF NEW.salary < OLD.salary THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Salary cannot be reduced!';
+    END IF;
+END;
+```
+
+---
+
+## 🔷 DCL — Data Control Language
+
+Controls who can do what in the database.
+
+```sql
+-- Give user permission to SELECT
+GRANT SELECT ON students TO 'nurul'@'localhost';
+
+-- Give all permissions
+GRANT ALL PRIVILEGES ON my_database.* TO 'admin'@'localhost';
+
+-- Remove a permission
+REVOKE SELECT ON students FROM 'nurul'@'localhost';
+```
+
+### Permission Types
+
+|Permission|What It Allows|
+|---|---|
+|`SELECT`|Read data|
+|`INSERT`|Add new data|
+|`UPDATE`|Modify data|
+|`DELETE`|Remove data|
+|`CREATE`|Create tables/databases|
+|`DROP`|Delete tables/databases|
+|`ALL PRIVILEGES`|Everything|
+
+---
+
+## 🔷 TCL — Transaction Control Language
+
+Controls how changes are saved or cancelled.
+
+```sql
+START TRANSACTION;
+    UPDATE accounts SET balance = balance - 5000 WHERE id = 1;
+    UPDATE accounts SET balance = balance + 5000 WHERE id = 2;
+COMMIT;        -- Save both changes permanently
+
+-- OR if something goes wrong:
+ROLLBACK;      -- Cancel ALL changes since START TRANSACTION
+
+-- Save a checkpoint
+SAVEPOINT before_transfer;
+-- Do some work...
+ROLLBACK TO before_transfer;  -- Undo only to this checkpoint
+```
+
+---
+
+# 🟥 PART 5 — ADVANCED CONCEPTS
+
+---
+
+## 🔷 Transactions in DBMS
+
+> [!quote] Simple Definition A Transaction is a group of database operations that must ALL succeed together, or ALL fail together. No partial results allowed.
+
+### The Bank Transfer Example
+
+```
+Transfer 5000 BDT from Rahim to Karim:
+
+Step 1: Deduct 5000 from Rahim: 50000 → 45000
+Step 2: Add 5000 to Karim:      30000 → 35000
+
+What if system crashes BETWEEN Step 1 and Step 2?
+  Rahim lost 5000
+  Karim never received it
+  5000 BDT vanished from the system
+
+TRANSACTION PREVENTS THIS:
+  Either BOTH steps succeed → COMMIT (saved)
+  Or NEITHER step is applied → ROLLBACK (reverted)
+```
+
+### Transaction States
+
+```
+START
+  │
+  ▼
+ACTIVE  (executing SQL statements)
+  │
+  ├──────────────────────┐
+  ▼                      ▼
+PARTIALLY COMMITTED    FAILED
+  │                      │
+  ▼                      ▼
+COMMITTED            ABORTED
+(saved permanently)  (rollback done, nothing changed)
+```
+
+---
+
+## 🔷 ACID Properties
+
+ACID is the set of 4 properties that guarantee transactions are reliable.
+
+> [!quote] ACID = Atomicity + Consistency + Isolation + Durability
+
+### A — Atomicity ("All or Nothing")
+
+```
+A transaction either:
+  Fully succeeds (all steps completed)    → COMMITTED
+  Fully fails and reverts (nothing saved) → ROLLED BACK
+
+Bank transfer:
+  Both deduct + add happen = COMMITTED
+  System crashes = both ROLLED BACK (nothing changed)
+  Only deduct happens, add does not = NOT ALLOWED
+```
+
+### C — Consistency
+
+```
+A transaction must take the database from one VALID state
+to another VALID state. Rules are never broken.
+
+Bank rule: Total money must always be the same.
+Before: Rahim=50000, Karim=30000, Total=80000
+After:  Rahim=45000, Karim=35000, Total=80000  (consistent)
+
+If total becomes 79000 after transaction → consistency violated
+```
+
+### I — Isolation
+
+```
+Transactions must not interfere with each other.
+
+While Transaction A is transferring money:
+Transaction B checking Rahim's balance at the same time
+should see either the OLD balance or the NEW balance,
+NOT the in-between state (money deducted but not added yet).
+```
+
+### D — Durability
+
+```
+Once a transaction is COMMITTED, it is permanent.
+
+Even if:
+  Power goes out
+  Server crashes
+  Natural disaster occurs
+
+The committed data must survive because it was written to disk.
+```
+
+### ACID Summary
+
+|Property|Simple Word|Means|
+|---|---|---|
+|**Atomicity**|All-or-Nothing|Full success or full failure|
+|**Consistency**|Valid to Valid|Rules are never broken|
+|**Isolation**|Independent|No interference between transactions|
+|**Durability**|Permanent|Committed data survives crashes|
+
+---
+
+## 🔷 Concurrency Control
+
+> [!quote] Simple Definition Concurrency Control manages multiple transactions running at the same time to prevent data corruption.
+
+### Why Concurrency is Tricky
+
+```
+1000 users trying to book the LAST train seat simultaneously:
+Without control: ALL 1000 see "1 seat available" and book it
+Result: 1000 bookings for 1 seat
+
+With concurrency control:
+One user gets it. The other 999 see "Sold out."
+```
+
+### Problems Without Concurrency Control
+
+#### 1. Lost Update Problem
+
+```
+Time   Transaction A              Transaction B
+ 1     Read balance = 1000
+ 2                                Read balance = 1000
+ 3     Add 500 → write 1500
+ 4                                Subtract 200 → write 800
+
+Final balance: 800   WRONG
+Should be: 1000 + 500 - 200 = 1300
+A's update was lost because B overwrote it.
+```
+
+#### 2. Dirty Read
+
+```
+Transaction A writes value 500 (not yet committed)
+Transaction B reads 500
+Transaction A ROLLS BACK → 500 was never real
+
+Transaction B used a value that should not have existed.
+```
+
+#### 3. Unrepeatable Read
+
+```
+Transaction A reads age = 20
+Transaction B updates age to 21 and commits
+Transaction A reads age again → gets 21
+
+Same transaction, same query, different results.
+```
+
+#### 4. Phantom Read
+
+```
+Transaction A: SELECT COUNT(*) WHERE age > 18 → gets 100
+Transaction B: INSERT 5 new students with age > 18
+Transaction A: SELECT COUNT(*) WHERE age > 18 → gets 105
+
+New "phantom" rows appeared between two reads of the same transaction.
+```
+
+### Solutions: Locking
+
+```
+Shared Lock (Read Lock):
+  Many transactions can read at the same time.
+  Nobody can write while others are reading.
+
+Exclusive Lock (Write Lock):
+  Only ONE transaction can write at a time.
+  Nobody can read or write while this lock is held.
+```
+
+### Isolation Levels
+
+|Level|Prevents|Still Allows|
+|---|---|---|
+|**Read Uncommitted**|Nothing|Dirty Read, Unrepeatable, Phantom|
+|**Read Committed**|Dirty Read|Unrepeatable, Phantom|
+|**Repeatable Read**|Dirty + Unrepeatable|Phantom|
+|**Serializable**|Everything|Nothing (safest but slowest)|
+
+---
+
+## 🔷 Deadlock in DBMS
+
+> [!quote] Simple Definition A Deadlock occurs when two transactions are each waiting for the other to release a lock — forever. Neither can proceed.
+
+### Classic Example
+
+```
+Transaction A holds Lock on Table 1
+Transaction B holds Lock on Table 2
+
+Transaction A wants Lock on Table 2 → WAITING for B
+Transaction B wants Lock on Table 1 → WAITING for A
+
+Both are waiting. Neither will ever finish. DEADLOCK!
+
+A ──waits for──► B
+▲                │
+└────waits for───┘
+(circle of death)
+```
+
+### How to Detect Deadlock
+
+The DBMS builds a "Wait-For Graph":
+
+- Nodes = transactions
+- Edges = "waiting for" relationships
+- If there is a CYCLE → deadlock
+
+### How to Resolve Deadlock
+
+```
+1. Deadlock Prevention
+   Design transactions to always lock resources in the same order.
+   If everyone locks Table1 before Table2, no deadlock occurs.
+
+2. Deadlock Detection + Recovery
+   DBMS checks for cycles periodically.
+   When found: KILL one transaction (the "victim").
+   Victim is rolled back, other transaction proceeds.
+
+3. Timeout
+   If a transaction waits too long, automatically roll it back.
+```
+
+---
+
+## 🔷 Database Recovery
+
+> [!quote] Simple Definition Database Recovery is restoring the database to a correct state after a failure.
+
+### Types of Failures
+
+|Failure Type|Cause|Example|
+|---|---|---|
+|**Transaction Failure**|Logic error, deadlock|Division by zero in a query|
+|**System Failure**|OS crash, power failure|Server unexpectedly restarts|
+|**Media Failure**|Hard drive crash|Physical disk destroyed|
+|**Network Failure**|Connection lost|Internet cut during transfer|
+
+### The Log File (Transaction Journal)
+
+The database keeps a log of every single operation.
+
+```
+Log entries written BEFORE actual changes:
+[T1 START]
+[T1, Account_A, OLD=50000, NEW=45000]
+[T1, Account_B, OLD=30000, NEW=35000]
+[T1 COMMIT]
+[T2 START]
+[T2, Product_Stock, OLD=100, NEW=99]
+[T2 COMMIT]
+```
+
+### Recovery Using the Log
+
+```
+After a crash, the database checks the log:
+
+COMMITTED transaction → REDO (re-apply the changes)
+UNCOMMITTED transaction → UNDO (reverse any partial changes)
+
+This brings the database back to a consistent state.
+```
+
+### Recovery Techniques
+
+|Technique|How It Works|
+|---|---|
+|**Log-Based Recovery**|Use transaction log to redo/undo operations|
+|**Checkpoint Recovery**|Periodically save DB state — recover only from last checkpoint|
+|**Shadow Paging**|Keep old copy, swap only when committed|
+
+---
+
+## 🔷 Indexing Deep Dive
+
+### The Book Index Analogy
+
+```
+Without index:
+  Want to find "normalization" in a 500-page textbook
+  → Read every page (slow)
+
+With index:
+  Check back of book → "Normalization: pages 234, 267, 312"
+  → Go directly to those pages (fast)
+```
+
+### Types of Indexes
+
+#### 1. Primary Index
+
+Created automatically on the primary key.
+
+#### 2. Secondary Index
+
+On a non-key column you search frequently.
+
+```sql
+-- You often query: WHERE branch = 'CSE'
+CREATE INDEX idx_branch ON students(branch);
+```
+
+#### 3. Composite Index
+
+Index on multiple columns.
+
+```sql
+-- Best for: WHERE branch = 'CSE' AND age > 18
+CREATE INDEX idx_branch_age ON students(branch, age);
+```
+
+#### 4. Clustered vs Non-Clustered Index
+
+```
+CLUSTERED INDEX:
+  The actual table rows are physically sorted by this index.
+  Like a physical library where books are arranged by Dewey Decimal.
+  Each table can only have ONE clustered index (usually primary key).
+
+NON-CLUSTERED INDEX:
+  A separate structure that points to the actual rows.
+  Like library catalog cards that point to book shelf locations.
+  A table can have MANY non-clustered indexes.
+```
+
+### How B-Tree Index Works
+
+Most databases use B-Tree (Balanced Tree) for indexes:
+
+```
+              [Root: 50]
+             /          \
+        [25]             [75]
+       /    \           /    \
+    [10]   [40]      [60]   [90]
+
+Searching for 65:
+  Root: 65 > 50 → go right
+  Node 75: 65 < 75 → go left
+  Node 60: 65 > 60 → go right
+  Found: 65
+
+Only 4 steps instead of checking all values.
+```
+
+---
+
+## 🔷 Hashing in DBMS
+
+> [!quote] Simple Definition Hashing converts a key value into a storage location using a formula (hash function). Used for very fast exact lookups.
+
+```
+Key: student_id = 104
+Hash function: 104 % 10 = 4
+→ Store in bucket 4
+
+To find student 104 later:
+→ Apply same formula: 104 % 10 = 4
+→ Go to bucket 4 directly
+→ Found instantly
+```
+
+### Hashing vs Indexing
+
+|Feature|Indexing (B-Tree)|Hashing|
+|---|---|---|
+|Equality search (id = 5)|Fast|Very Fast|
+|Range search (id > 5)|Fast|Not possible|
+|Ordering|Supports|Does not support|
+|Best for|General queries|Exact-match lookups|
+
+---
+
+## 🔷 Query Processing and Optimization
+
+### What Happens When You Run a Query
+
+```
+You type: SELECT name FROM students WHERE age > 18;
+
+Step 1 — PARSING
+  Check SQL syntax (is it valid?)
+  Build a parse tree
+
+Step 2 — SEMANTIC ANALYSIS
+  Does 'students' table exist?
+  Does 'name' column exist?
+
+Step 3 — QUERY OPTIMIZATION
+  What is the fastest way to get this result?
+  Should we use an index on age?
+  Generate multiple execution plans, pick the best one.
+
+Step 4 — EXECUTION
+  Run the chosen plan and return results.
+```
+
+### Optimization Strategies
+
+|Strategy|Meaning|
+|---|---|
+|Use indexes|Check if column has an index before scanning|
+|Push WHERE early|Filter rows as early as possible|
+|Join order|Join smaller tables first|
+|Avoid SELECT *|Only request columns you need|
+|Use EXPLAIN|Ask the DB to show its execution plan|
+
+```sql
+-- See how MySQL executes a query
+EXPLAIN SELECT * FROM students WHERE age > 18;
+-- Shows: which index was used, how many rows were checked
+```
 
 ---
 
 ## 🔷 Relational Algebra
 
-> [!quote] Simple Definition **Relational Algebra** is a set of operations to query (ask questions from) a database. It is **procedural** — it tells you HOW to get the data step by step.
+> [!quote] Simple Definition Relational Algebra is a set of mathematical operations to query data from tables. It is the theoretical foundation of SQL. It is PROCEDURAL — tells HOW to get data.
 
-Think of it as **instructions for the database**.
-
-|Operation|Symbol|What It Does|Analogy|
-|---|---|---|---|
-|**Select**|σ (sigma)|Filter rows by condition|Highlight rows in Excel|
-|**Project**|π (pi)|Choose specific columns|Hide columns in Excel|
-|**Union**|∪|Combine two tables|Merge two lists|
-|**Set Difference**|−|Items in A but NOT in B|Subtract one list from another|
-|**Cartesian Product**|×|Combine every row with every row|All possible combinations|
-|**Rename**|ρ (rho)|Rename a table/result|Save As in Excel|
-
----
-
-### Example Table
+### Working Table
 
 ```
-Student Table:
-| Roll No | Name   | Age | Gender |
-|    1    | Rahim  |  18 | Male   |
-|    2    | Karim  |  16 | Male   |
-|    3    | Ayesha |  19 | Female |
-|    4    | Samin  |  17 | Male   |
+Student:
+| Roll | Name   | Age | Gender |
+|  1   | Rahim  |  18 | Male   |
+|  2   | Karim  |  16 | Male   |
+|  3   | Ayesha |  19 | Female |
+|  4   | Samin  |  17 | Male   |
 ```
 
----
+### All Operations
 
-### Select σ (Filter Rows)
+#### Select σ — Filter Rows
 
 ```
-Query: σ Age > 17 (Student)
-Meaning: Show students older than 17
+σ Age > 17 (Student)
 
 Result:
 | 1 | Rahim  | 18 | Male   |
 | 3 | Ayesha | 19 | Female |
+
+SQL equivalent: SELECT * FROM student WHERE age > 17;
 ```
 
----
-
-### Project π (Choose Columns)
+#### Project π — Choose Columns
 
 ```
-Query: π Name, Age (Student)
-Meaning: Show only Name and Age columns
+π Name, Age (Student)
 
 Result:
 | Name   | Age |
 | Rahim  |  18 |
 | Karim  |  16 |
-| Ayesha |  19 |
-| Samin  |  17 |
+
+SQL equivalent: SELECT name, age FROM student;
 ```
 
----
-
-### Combined Query
+#### Combined
 
 ```
-Query: π Name (σ Age > 17 AND Gender = 'Male' (Student))
+π Name (σ Age > 17 AND Gender = 'Male' (Student))
+
 Step 1 — Filter: Age > 17 AND Male → Rahim
-Step 2 — Project: Show only Name → Rahim
+Step 2 — Keep only Name → Rahim
+
+SQL: SELECT name FROM student WHERE age > 17 AND gender = 'Male';
 ```
 
----
-
-### Union ∪
+#### Union ∪ — Combine, Remove Duplicates
 
 ```
-Query: RegularClass ∪ ExtraClass
-Meaning: Students in EITHER class (no duplicates)
-
-Like: List A + List B, removing duplicates
+Class_A ∪ Class_B
+If Rahim is in both → appears ONCE in result
+SQL: SELECT * FROM class_a UNION SELECT * FROM class_b;
 ```
 
----
-
-### Set Difference −
+#### Set Difference − — Items in A not in B
 
 ```
-Query: RegularClass − ExtraClass
-Meaning: Students in RegularClass but NOT in ExtraClass
-
-Like: List A minus anyone who also appears in List B
+Class_A − Class_B
+Students in A but NOT in B
+SQL: SELECT * FROM class_a EXCEPT SELECT * FROM class_b;
 ```
 
----
-
-### Cartesian Product ×
+#### Cartesian Product × — All Combinations
 
 ```
-Query: A × B
-If A has 2 rows and B has 3 rows → result has 2 × 3 = 6 rows
-Every row of A is combined with every row of B
+A × B
+A has 3 rows, B has 4 rows → result has 12 rows
+SQL: SELECT * FROM A CROSS JOIN B;
 ```
+
+#### Rename ρ — Rename
+
+```
+ρ NewName (OldTable)
+SQL: SELECT * FROM OldTable AS NewName;
+```
+
+#### Natural Join ⋈
+
+```
+Student ⋈ Enrollment
+Automatically matches on common column names
+Only keeps rows with matches in both tables
+SQL: INNER JOIN using common column names
+```
+
+### Operation Summary
+
+|Symbol|Name|SQL Equivalent|Does|
+|---|---|---|---|
+|σ|Select|WHERE|Filter rows|
+|π|Project|SELECT columns|Choose columns|
+|∪|Union|UNION|Combine + deduplicate|
+|−|Difference|EXCEPT|Items in A not in B|
+|×|Cartesian Product|CROSS JOIN|All combinations|
+|ρ|Rename|AS|Rename table|
+|⋈|Natural Join|INNER JOIN|Match on common columns|
 
 ---
 
 ## 🔷 Relational Calculus
 
-> [!quote] Simple Definition **Relational Calculus** is also used to query a database. But unlike Relational Algebra, it is **non-procedural** — it only says WHAT you want, not HOW to get it.
-
-**Real-life analogy:**
-
-- **Algebra** = "Go to the shelf, take books, filter by author, sort by year" (step-by-step)
-- **Calculus** = "I want books by this author from 2020" (just the condition)
-
----
-
-### Two Types
-
-|Type|Works With|Example Variable|
-|---|---|---|
-|**TRC** (Tuple Relational Calculus)|Whole rows (tuples)|T = a full row|
-|**DRC** (Domain Relational Calculus)|Individual column values|name, age = individual values|
-
----
-
-### TRC Example
-
-```
-Query: Show names of students whose age > 17
-
-TRC Expression: { T.name | Student(T) AND T.age > 17 }
-
-Meaning:
-- For each row T in Student table
-- If T.age > 17
-- Return T.name
-
-Result:
-| Name   |
-| Rahim  |
-| Ayesha |
-```
-
----
-
-### DRC Example
-
-```
-Query: Show name and age of students older than 17
-
-DRC Expression: { <name, age> | <name, age> ∈ Student AND age > 17 }
-
-Result:
-| Name   | Age |
-| Rahim  |  18 |
-| Ayesha |  19 |
-```
-
----
+> [!quote] Simple Definition Relational Calculus also queries data but is NON-PROCEDURAL — it says WHAT data you want, not HOW to get it.
 
 ### Algebra vs Calculus
 
+```
+ALGEBRA (procedural — tells steps):
+"Go to Student table. Filter age > 17. Take only Name column."
+
+CALCULUS (non-procedural — tells condition):
+"I want student names where the student's age is greater than 17."
+
+Both give the same result — different way of expressing.
+```
+
+### TRC — Tuple Relational Calculus
+
+Works with entire rows (tuples).
+
+```
+Notation: { T.column | Condition }
+
+Example: Find names of students older than 17
+{ T.name | Student(T) AND T.age > 17 }
+
+Reading:
+  For every row T in Student table
+  If T.age > 17
+  Return T.name
+
+T = one full row
+T.name = the name column of that row
+T.age = the age column of that row
+```
+
+### DRC — Domain Relational Calculus
+
+Works with individual column values.
+
+```
+Notation: { <c1, c2, ...> | Condition }
+
+Example: Find names and ages where age > 17
+{ <name, age> | <name, age> ∈ Student AND age > 17 }
+```
+
+### TRC vs DRC
+
+|Feature|TRC|DRC|
+|---|---|---|
+|Works with|Whole rows|Individual values|
+|Variable =|A full row (T)|Specific attributes (name, age)|
+
+### Algebra vs Calculus Summary
+
 ||Relational Algebra|Relational Calculus|
 |---|---|---|
-|**Type**|Procedural (how)|Non-procedural (what)|
-|**Focus**|Steps to get data|Condition for data|
-|**Like**|Recipe instructions|Food order|
+|Type|Procedural (how)|Non-procedural (what)|
+|Focus|Steps to get data|Condition for data|
+|Like|Recipe instructions|Food order|
 
 ---
 
-## 🔷 ER Model → Relational Model (Converting Design to Tables)
+# 🟪 PART 6 — SPECIAL TOPICS
 
-After designing the ER Diagram, we convert it into actual database tables.
+---
 
-### Conversion Rules
+## 🔷 NoSQL vs SQL
 
-|ER Model Element|Becomes in Relational Model|
+> [!quote] Simple Definition SQL databases store data in tables with fixed structure. NoSQL databases store data in flexible formats — documents, key-value, graphs, etc.
+
+### When to Use Which
+
+|Situation|Use SQL|Use NoSQL|
+|---|---|---|
+|Structured, predictable data|Yes||
+|Complex relationships between tables|Yes||
+|Financial/transactional data|Yes||
+|Strong data integrity needed|Yes||
+|Flexible, changing data structure||Yes|
+|Massive scale (millions of writes/sec)||Yes|
+|Unstructured data (social posts, logs)||Yes|
+|Real-time apps (chat, gaming)||Yes|
+
+### NoSQL Types
+
+|Type|Structure|Example|Best For|
+|---|---|---|---|
+|**Document**|JSON documents|MongoDB|User profiles, catalogs|
+|**Key-Value**|Key → Value pairs|Redis|Sessions, caching|
+|**Column-Family**|Wide columns|Cassandra|Time-series, analytics|
+|**Graph**|Nodes and Edges|Neo4j|Social networks|
+
+### SQL vs NoSQL Comparison
+
+|Feature|SQL|NoSQL|
+|---|---|---|
+|**Structure**|Fixed schema (table)|Flexible|
+|**Scaling**|Vertical (bigger server)|Horizontal (more servers)|
+|**ACID**|Full ACID|Partial (depends on DB)|
+|**Query language**|SQL (standard)|Varies by DB|
+|**Joins**|Easy with SQL|Hard or impossible|
+|**Examples**|MySQL, PostgreSQL|MongoDB, Redis|
+
+---
+
+## 🔷 Database Security
+
+> [!quote] Simple Definition Database Security protects the database from unauthorized access, misuse, and data breaches.
+
+### Threats to a Database
+
+|Threat|Description|Example|
+|---|---|---|
+|**SQL Injection**|Attacker inserts SQL code through input fields|Login form hack|
+|**Privilege Misuse**|Users accessing data beyond authorization|Employee reading CEO salary|
+|**Data Breach**|Unauthorized copying of sensitive data|Customer data stolen|
+|**Denial of Service**|Overwhelming DB with requests|App becomes unavailable|
+|**Insider Threat**|Trusted employee stealing data|Disgruntled staff|
+
+### SQL Injection Example
+
+```
+Login form: username = admin'--    password = anything
+
+SQL becomes:
+SELECT * FROM users WHERE username='admin'--' AND password='anything';
+
+Everything after -- is a comment. Password check is ignored.
+Hacker logs in as admin without knowing the password.
+
+FIX: Use parameterized queries (prepared statements):
+SELECT * FROM users WHERE username=? AND password=?
+The ? values are treated as pure data, never as SQL commands.
+```
+
+### Security Measures
+
+```
+1. Authentication
+   Require username + password (or multi-factor authentication)
+
+2. Authorization (Access Control)
+   GRANT only needed permissions
+   Principle of least privilege: give only what is needed
+
+3. Encryption
+   Encrypt sensitive data at rest (stored on disk)
+   Encrypt data in transit (SSL/TLS for connections)
+
+4. Auditing
+   Log all database access and changes
+   Track who accessed what, when
+
+5. Input Validation
+   Never trust user input
+   Use parameterized queries to prevent injection
+
+6. Backup
+   Regular backups
+   Test recovery procedures
+```
+
+---
+
+## 🔷 Backup and Recovery
+
+> [!quote] Simple Definition Backup = copying your database to a safe location. Recovery = restoring the database from that copy after failure.
+
+### Types of Backup
+
+|Type|What It Backs Up|Speed|Storage|
+|---|---|---|---|
+|**Full Backup**|Everything|Slow|Large|
+|**Incremental**|Only changes since LAST backup|Fast|Small|
+|**Differential**|Only changes since last FULL backup|Medium|Medium|
+|**Transaction Log**|Log of all transactions|Fast|Small|
+
+### Backup Strategy Example
+
+```
+Sunday:     FULL BACKUP (baseline)
+Monday:     Incremental (only Monday changes)
+Tuesday:    Incremental (only Tuesday changes)
+Wednesday:  Incremental (only Wednesday changes)
+Next Sunday: FULL BACKUP (new baseline)
+
+Recovery: Restore Sunday full backup, then apply each incremental in order.
+```
+
+### RPO and RTO
+
+```
+RPO = Recovery Point Objective
+  "How much data loss is acceptable?"
+  "We backup every hour, so we can lose up to 1 hour of data."
+
+RTO = Recovery Time Objective
+  "How long can the system be down during recovery?"
+  "We must be back online within 4 hours."
+```
+
+---
+
+## 🔷 Data Warehouse vs Database
+
+|Feature|Database (OLTP)|Data Warehouse (OLAP)|
+|---|---|---|
+|Full name|Online Transaction Processing|Online Analytical Processing|
+|Purpose|Day-to-day operations|Analysis and reporting|
+|Data|Current data|Historical data (months/years)|
+|Queries|Simple, fast, frequent|Complex, slow, occasional|
+|Users|Many (thousands)|Few (analysts, managers)|
+|Updates|Constant inserts/updates|Batch loads (daily/weekly)|
+|Example|Hospital patient records|5-year patient trend analysis|
+|Tools|MySQL, PostgreSQL|Snowflake, Redshift, BigQuery|
+
+### ETL Process (Extract, Transform, Load)
+
+Data goes from databases to a warehouse through ETL:
+
+```
+Source Databases (MySQL, Oracle, etc.)
+        │
+        ▼  EXTRACT: Pull raw data
+   Staging Area
+        │
+        ▼  TRANSFORM: Clean, reshape, standardize
+   Cleaned Data
+        │
+        ▼  LOAD: Push into warehouse
+   Data Warehouse
+        │
+        ▼
+   Analytics Tools (Power BI, Tableau)
+        │
+        ▼
+   Reports + Dashboards
+```
+
+---
+
+## 🔷 Big Data Basics
+
+> [!quote] Simple Definition Big Data refers to datasets so large and complex that traditional databases cannot handle them efficiently.
+
+### The 5 Vs of Big Data
+
+|V|Meaning|Example|
+|---|---|---|
+|**Volume**|Massive size|Facebook generates 4 petabytes/day|
+|**Velocity**|High speed|Twitter: 6,000 tweets/second|
+|**Variety**|Different formats|Text, video, sensor data, GPS|
+|**Veracity**|Data quality|Is this data trustworthy?|
+|**Value**|Business value|Does this data help us decide?|
+
+### Big Data vs Traditional Database
+
+```
+Traditional Database:
+  Handles: Gigabytes to Terabytes
+  Scale: One server (or few)
+  Data type: Structured only
+
+Big Data:
+  Handles: Terabytes to Petabytes
+  Scale: Thousands of servers
+  Data type: Structured + Unstructured + Semi-structured
+```
+
+### Tools for Big Data
+
+|Tool|What It Does|
 |---|---|
-|Entity|Table|
-|Attribute|Column|
-|Key Attribute|Primary Key|
-|Relationship|Foreign Key OR new Relationship Table|
-|Weak Entity|Table with Foreign Key of strong entity|
-|Relationship Attribute|Column in the relationship table|
+|**Hadoop**|Distributed storage and processing|
+|**Spark**|Fast in-memory big data processing|
+|**Kafka**|Real-time data streaming|
+|**Hive**|SQL-like queries on Hadoop data|
+|**MongoDB**|Flexible NoSQL for large datasets|
 
 ---
 
-### Full Example
-
-**ER Design:**
-
-```
-Teacher ──[Teaches]──► Student
-```
-
-**Converted Tables:**
-
-```
-Teacher Table:
-| teacher_id (PK) | teacher_name |
-|       1         |  Mr. Ahmed   |
-|       2         | Ms. Sultana  |
-
-Student Table:
-| student_id (PK) | student_name |
-|      101        |    Rahim     |
-|      102        |    Karim     |
-
-StudentTeacher Table (Relationship):
-| teacher_id (FK) | student_id (FK) | subject |
-|       1         |      101        |  DBMS   |
-|       2         |      102        |  Java   |
-```
-
-```mermaid
-erDiagram
-    TEACHER {
-        int teacher_id PK
-        string teacher_name
-    }
-    STUDENT {
-        int student_id PK
-        string student_name
-    }
-    STUDENT_TEACHER {
-        int teacher_id FK
-        int student_id FK
-        string subject
-    }
-    TEACHER ||--o{ STUDENT_TEACHER : "teaches"
-    STUDENT ||--o{ STUDENT_TEACHER : "is taught by"
-```
+# 📋 QUICK REFERENCE
 
 ---
 
@@ -1198,46 +2782,216 @@ erDiagram
 
 ### Core Definitions
 
-| Term             | One-Line Meaning                     |
-| ---------------- | ------------------------------------ |
-| Data             | Raw facts                            |
-| Database         | Organized electronic storage of data |
-| DBMS             | Software to manage databases         |
-| Table            | Rows and columns (like Excel)        |
-| Row/Tuple        | One record                           |
-| Column/Attribute | One type of detail                   |
-| Primary Key      | Unique identifier for each row       |
-| Foreign Key      | Column linking two tables            |
-| SQL              | Language to talk to the database     |
+| Term             | One-Line Definition                              |
+| ---------------- | ------------------------------------------------ |
+| Data             | Raw, unprocessed facts                           |
+| Information      | Processed data with meaning                      |
+| Database         | Organized electronic collection of data          |
+| DBMS             | Software that manages databases                  |
+| Table            | Data in rows and columns                         |
+| Row/Tuple        | One record in a table                            |
+| Column/Attribute | One type of data in a table                      |
+| Primary Key      | Unique identifier for each row                   |
+| Foreign Key      | Column linking two tables                        |
+| SQL              | Standard language to query databases             |
+| Index            | Data structure for faster lookups                |
+| View             | Saved query that acts as virtual table           |
+| Transaction      | Group of operations that all succeed or all fail |
+| ACID             | Properties ensuring reliable transactions        |
+| Normalization    | Process to reduce data redundancy                |
+| ER Model         | Visual diagram for database planning             |
 
-### Normal Forms
+### SQL Commands Quick Reference
 
-|Form|Fixes|
-|---|---|
-|1NF|Multiple values in one cell|
-|2NF|Partial dependency|
-|3NF|Transitive dependency|
-|BCNF|Hidden non-super-key dependency|
-|4NF|Independent multi-valued facts|
-|5NF|Join dependency|
+```sql
+-- DDL
+CREATE TABLE name (columns);
+ALTER TABLE name ADD COLUMN col type;
+DROP TABLE name;
+TRUNCATE TABLE name;
 
-### Relational Algebra Operations
+-- DML
+INSERT INTO table VALUES (...);
+UPDATE table SET col=val WHERE condition;
+DELETE FROM table WHERE condition;
 
-|Operation|Symbol|Does|
+-- DQL
+SELECT col1, col2 FROM table
+WHERE condition
+ORDER BY col DESC
+LIMIT 10;
+
+-- Aggregates
+SELECT COUNT(*), SUM(col), AVG(col), MAX(col), MIN(col) FROM table;
+
+-- GROUP BY
+SELECT col, COUNT(*) FROM table GROUP BY col HAVING COUNT(*) > 5;
+
+-- Joins
+FROM t1 INNER JOIN t2 ON t1.id = t2.id
+FROM t1 LEFT JOIN t2 ON t1.id = t2.id
+FROM t1 RIGHT JOIN t2 ON t1.id = t2.id
+
+-- DCL
+GRANT SELECT ON table TO 'user';
+REVOKE SELECT ON table FROM 'user';
+
+-- TCL
+START TRANSACTION;
+COMMIT;
+ROLLBACK;
+SAVEPOINT name;
+```
+
+### Keys Summary
+
+|Key|Definition|Unique?|NULL?|
+|---|---|---|---|
+|Super Key|Any unique identifier|Yes|Allowed (except PK)|
+|Candidate Key|Minimal super key|Yes|Not allowed|
+|Primary Key|Chosen candidate key|Yes|Never|
+|Foreign Key|Reference to another PK|Not required|Allowed|
+|Composite Key|2+ columns together as PK|Together unique|Usually not|
+|Alternative Key|Candidate key not chosen|Yes|Not allowed|
+
+### Normal Forms Quick Test
+
+|Form|Ask This|If YES → Problem|
 |---|---|---|
-|Select|σ|Filter rows|
-|Project|π|Choose columns|
-|Union|∪|Combine results|
-|Set Difference|−|Items in A not in B|
-|Cartesian Product|×|All combinations|
-|Rename|ρ|Rename table|
+|**1NF**|Does any cell have multiple values?|Multiple values in one cell|
+|**2NF**|Does non-key depend on PART of composite key?|Partial dependency|
+|**3NF**|Does non-key depend on another non-key?|Transitive dependency|
+|**BCNF**|Does non-super-key determine another column?|Non-super-key determinant|
+|**4NF**|Are two independent multi-valued facts in one table?|Multi-valued dependency|
+
+### Relational Algebra Quick Reference
+
+|Operation|Symbol|SQL Equivalent|
+|---|---|---|
+|Select (rows)|σ condition (R)|WHERE|
+|Project (cols)|π col1,col2 (R)|SELECT col1, col2|
+|Union|R ∪ S|UNION|
+|Difference|R − S|EXCEPT|
+|Cartesian Product|R × S|CROSS JOIN|
+|Rename|ρ NewName (R)|AS|
+|Natural Join|R ⋈ S|INNER JOIN|
+
+### ACID Properties
+
+|Letter|Property|One Word|Means|
+|---|---|---|---|
+|A|Atomicity|All-or-Nothing|Complete or revert|
+|C|Consistency|Valid to Valid|Rules never broken|
+|I|Isolation|Independent|No interference|
+|D|Durability|Permanent|Survives crashes|
+
+### Architecture Summary
+
+|Architecture|Layers|Used In|
+|---|---|---|
+|1-Tier|Direct access to DB|Developer testing|
+|2-Tier|Client + DB|Desktop applications|
+|3-Tier|Client + App Server + DB|Web applications|
+
+---
+
+## ⚠️ Common Mistakes Beginners Make
+
+| Mistake                        | Wrong                                         | Correct                                          |
+| ------------------------------ | --------------------------------------------- | ------------------------------------------------ |
+| UPDATE without WHERE           | `UPDATE students SET age=0;` updates ALL rows | Always add `WHERE student_id=1`                  |
+| DELETE without WHERE           | `DELETE FROM students;` empties the table     | Always specify which rows                        |
+| Forgetting to normalize        | Storing city in every student row             | Separate City/Zip table                          |
+| Using SELECT * always          | Loads unnecessary data                        | SELECT only needed columns                       |
+| Ignoring NULL                  | Treating NULL as 0 or empty string            | NULL means unknown — use `IS NULL`               |
+| Skipping indexes               | Large table, no index = slow                  | Add index on frequently searched columns         |
+| No transaction for related ops | Two related updates done separately           | Wrap in START TRANSACTION...COMMIT               |
+| Poor naming                    | Column `d`, table `t1`                        | Descriptive names: `enrollment_date`, `students` |
+| No foreign key constraint      | Tables not linked properly                    | Define FK relationships explicitly               |
+| Skipping backups               | No backup before major changes                | Always backup before DROP or large updates       |
+
+---
+
+## 🗺️ How Everything Connects
+
+```
+REAL WORLD NEED:
+"I need to store and manage my school's data"
+                    │
+                    ▼
+        STEP 1: REQUIREMENTS ANALYSIS
+        What data do I need? Who uses it?
+                    │
+                    ▼
+        STEP 2: ER DIAGRAM
+        Draw entities, attributes, relationships
+        [Student]──[Enrollment]──[Course]
+                    │
+                    ▼
+        STEP 3: RELATIONAL MODEL
+        Convert ER to tables with keys
+        Student(id, name, age)
+        Course(id, name)
+        Enrollment(student_id FK, course_id FK, marks)
+                    │
+                    ▼
+        STEP 4: NORMALIZATION
+        1NF → 2NF → 3NF → BCNF
+        Remove redundancy and anomalies
+                    │
+                    ▼
+        STEP 5: CREATE IN DBMS USING SQL
+        CREATE TABLE, INSERT, CREATE INDEX
+                    │
+                    ▼
+        STEP 6: QUERY THE DATA
+        SELECT, JOIN, GROUP BY, aggregate functions
+                    │
+                    ▼
+        STEP 7: PROTECT AND MAINTAIN
+        Transactions, ACID, Backup, Security, Indexes
+                    │
+                    ▼
+        STEP 8: ADVANCED NEEDS (if needed)
+        Data Warehouse, Big Data, NoSQL
+```
+
+---
+
+## 🧭 Learning Roadmap
+
+```
+BEGINNER (Start here):
+  What is data, database, DBMS
+  Types of database models
+  Basic SQL (SELECT, INSERT, UPDATE, DELETE)
+  Primary key, foreign key
+  Basic ER Model concepts
+
+INTERMEDIATE (Next):
+  ER Diagrams (draw and read them)
+  Normalization (1NF, 2NF, 3NF, BCNF)
+  SQL Joins (INNER, LEFT, RIGHT)
+  SQL aggregate functions
+  Indexes and Views
+  Transactions and ACID
+
+ADVANCED (When ready):
+  4NF, 5NF normalization
+  Stored Procedures, Triggers
+  Query processing and optimization
+  Concurrency control and deadlocks
+  NoSQL databases
+  Data Warehousing and ETL
+  Big Data tools
+```
 
 ---
 
 ## 🏷️ Tags
 
-`#database` `#dbms` `#sql` `#normalization` `#er-model` `#relational-algebra` `#keys` `#study-notes` `#computer-science`
+`#database` `#dbms` `#sql` `#normalization` `#er-model` `#relational-algebra` `#keys` `#transactions` `#acid` `#indexing` `#joins` `#study-notes` `#computer-science` `#beginner-friendly` `#intermediate`
 
 ---
 
-_Notes based on study materials on Data, DBMS, ER Models, Normalization, and Relational Algebra._
+_Complete DBMS notes — Foundations to Advanced. Written for beginners with real-life analogies, visual diagrams, and step-by-step explanations._
