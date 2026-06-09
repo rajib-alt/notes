@@ -168,3 +168,5 @@ Rookies wing it; pretty good communicators use frameworks (PREP, STAR, PARA, PEE
 - YouTube transcript: Ben (communication coach, 15 years, Fortune 500 clients)
 - Influenced by: The Stage Academy (Ben's online communication programme)
 - Related reading: works on vocal variety, presentation skills, and embodied communication
+  
+ https://event.webinarjam.com/yp188/replay/5w177iyh6i5x4r4bnm577?webinar_id=4
