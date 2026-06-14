@@ -1,8 +1,12 @@
-
-
-tags: [wealth, entrepreneurship, money-mindset, business, financial-freedom] 
-created: 2026-06-09 
-source: https://www.youtube.com/watch?v=6mRbDEtDoyA
+---
+tags:
+  - entrepreneurship
+  - money
+  - business
+  - financial-freedom
+created: 2026-06-09
+Source: " https://www.youtube.com/watch?v=6mRbDEtDoyA"
+---
 
 # The Equation to Wealth
 
@@ -12,7 +16,7 @@ source: https://www.youtube.com/watch?v=6mRbDEtDoyA
 
 ## The Broken Equation Most People Follow
 
-Society programs people from childhood to believe that education leads to a job, and a job leads to financial security. This "money = salary from a job" equation feels logical, but it has a hard ceiling. At $20/hour working 40 hours a week, it takes nearly 24 years to accumulate $1 million — before taxes, expenses, and inflation eat into it.
+Society programs people from childhood to believe that education leads to a job, and a job leads to financial security. This "[[The Map of Money]] Money = salary from a job" equation feels logical, but it has a hard ceiling. At $20/hour working 40 hours a week, it takes nearly 24 years to accumulate $1 million — before taxes, expenses, and inflation eat into it.
 
 - Trading time for money limits your ceiling to the hours in a day
 - Inflation reduces the real value of savings over decades

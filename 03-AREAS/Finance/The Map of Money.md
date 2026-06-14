@@ -1,8 +1,13 @@
-
-
-tags: [money, economics, finance, monetary-history, debt] 
-created: 2026-06-08 
-source: "YouTube – Merlin AI, 'Entire Map of Money in 21 Min.' (https://www.youtube.com/watch?v=mnuOZcmoGD8)"
+---
+tags:
+  - money
+  - economics
+  - area/finance
+  - monetary-history
+  - dept
+created: 2026-06-08
+Source: https://www.youtube.com/watch?v=mnuOZcmoGD8
+---
 
 # The Map of Money
 
