@@ -22,6 +22,11 @@ SORT file.mtime DESC
 LIMIT 10
 ```
 
+
+
+## Notes
+[[Iblis and Satan Across Traditions]]
+
 ## Weekly tracker
 
 | Practice | This week |
