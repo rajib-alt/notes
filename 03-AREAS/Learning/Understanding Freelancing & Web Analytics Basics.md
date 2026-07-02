@@ -1,7 +1,7 @@
 
 
- tags: [freelancing, web-analytics, conversion-tracking, career, digital-marketing] 
- created: 2026-07-02
+tags: [freelancing, web-analytics, conversion-tracking, career, digital-marketing] 
+created: 2026-07-02
 source: class notes
 
 # Understanding Freelancing & Web Analytics Basics
